@@ -1,14 +1,3 @@
-import { InvalidateAllCacheProviderPaginationService } from '@modules/cacheProvider.invalidate/services/InvalidateAllCacheProviderPaginationService'
-import { InvalidateAllCacheStocksPageService } from '@modules/cacheProvider.invalidate/services/InvalidateAllCacheStocksPageService'
-import { InvalidateAllCacheSubCategoriesPageService } from '@modules/cacheProvider.invalidate/services/InvalidateAllCacheSubCategoriesPageService'
-import { InvalidateCacheAllBannerPrefixoService } from '@modules/cacheProvider.invalidate/services/InvalidateCacheAllBannerPrefixoService'
-import { InvalidateCacheAllBannersPublisherPrefixService } from '@modules/cacheProvider.invalidate/services/InvalidateCacheAllBannersPublisherPrefixService'
-import { InvalidateCacheAllBannersService } from '@modules/cacheProvider.invalidate/services/InvalidateCacheAllBannersService'
-import { InvalidateCacheAllCategoriesService } from '@modules/cacheProvider.invalidate/services/InvalidateCacheAllCategoriesService'
-import { InvalidateCacheAllPoliticsService } from '@modules/cacheProvider.invalidate/services/InvalidateCacheAllPoliticsService'
-import { InvalidateCacheAllPoliticsSummariesService } from '@modules/cacheProvider.invalidate/services/InvalidateCacheAllPoliticsSummariesService'
-import { InvalidateCacheAllProductsService } from '@modules/cacheProvider.invalidate/services/InvalidateCacheAllProductsService'
-import { InvalidateCacheAllQuestionsService } from '@modules/cacheProvider.invalidate/services/InvalidateCacheAllQuestionsService'
 import { InvalidateCacheAllUserByUserIdDashboardLoggedPrefixoService } from '@modules/cacheProvider.invalidate/services/InvalidateCacheAllUserByUserIdDashboardLoggedPrefixoService'
 import { InvalidateCacheAllUsersByEmailColaboratorLoggedPrefixService } from '@modules/cacheProvider.invalidate/services/InvalidateCacheAllUsersByEmailColaboratorLoggedPrefixService'
 import { InvalidateCacheAllUsersByEmailDashboardLoggedPrefixService } from '@modules/cacheProvider.invalidate/services/InvalidateCacheAllUsersByEmailDashboardLoggedPrefixService'
@@ -16,15 +5,9 @@ import { InvalidateCacheAllUsersByPrefixUserService } from '@modules/cacheProvid
 import { InvalidateCacheAllUsersByUserIdAndCompanyIdDashboardLoggedPrefixService } from '@modules/cacheProvider.invalidate/services/InvalidateCacheAllUsersByUserIdAndCompanyIdDashboardLoggedPrefixService'
 import { InvalidateCacheAllUsersByUserIdColaboratorLoggedPrefixService } from '@modules/cacheProvider.invalidate/services/InvalidateCacheAllUsersByUserIdColaboratorLoggedPrefixService'
 import { InvalidateCacheAllUsersReviewsByPrefixUserService } from '@modules/cacheProvider.invalidate/services/InvalidateCacheAllUsersReviewsByPrefixUserService'
-import { InvalidateCacheListTitleEcommercePaginationService } from '@modules/cacheProvider.invalidate/services/InvalidateCacheListTitleEcommercePaginationService'
-import { InvalidateCacheTypesProductsPageService } from '@modules/cacheProvider.invalidate/services/InvalidateCacheTypesProductsPageService'
-import { InvalidateCachekeyAllAggregationsProductsEcommerceSearchService } from '@modules/cacheProvider.invalidate/services/InvalidateCachekeyAllAggregationsProductsEcommerceSearchService'
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider'
 import AppError from '@shared/errors/AppError'
 import { container, inject, injectable } from 'tsyringe'
-import { InvalidateCacheAllColorPrefixoService } from './InvalidateCacheAllColorPrefixoService'
-import { InvalidateCacheAllListCategoriesNotInIdsPaginationByProductIdService } from './InvalidateCacheAllListCategoriesNotInIdsPaginationByProductIdService'
-import { InvalidateCacheAllReceiversService } from '../../receivers/services/caches/InvalidateCacheAllReceiversService'
 
 @injectable()
 class InvalidateAllCacheService {
@@ -69,49 +52,8 @@ class InvalidateAllCacheService {
 
       const getAggregationProductMeDetailsByProductId = `getAggregationProductMeDetailsByProductId`
 
-      const invalidateCacheAllColorPrefixoService = container.resolve(
-        InvalidateCacheAllColorPrefixoService,
-      )
-
-      const invalidateCacheAllBannersService = container.resolve(
-        InvalidateCacheAllBannersService,
-      )
-
-      const invalidateCacheAllReceiversService = container.resolve(InvalidateCacheAllReceiversService)
-
-      const invalidateCacheAllListCategoriesNotInIdsPaginationByProductIdService =
-        container.resolve(
-          InvalidateCacheAllListCategoriesNotInIdsPaginationByProductIdService,
-        )
-      const invalidateCacheAllBannersPublisherPrefixService = container.resolve(
-        InvalidateCacheAllBannersPublisherPrefixService,
-      )
-      const invalidateCachekeyAllAggregationsProductsEcommerceSearchService =
-        container.resolve(
-          InvalidateCachekeyAllAggregationsProductsEcommerceSearchService,
-        )
-      const invalidateCacheAllPoliticsSummariesService = container.resolve(
-        InvalidateCacheAllPoliticsSummariesService,
-      )
-      const invalidateCacheListTitleEcommercePaginationService =
-        container.resolve(InvalidateCacheListTitleEcommercePaginationService)
-      const invalidateCacheAllBannerPrefixoService = container.resolve(
-        InvalidateCacheAllBannerPrefixoService,
-      )
-
-      const invalidateAllCacheProviderPaginationService = container.resolve(
-        InvalidateAllCacheProviderPaginationService,
-      )
-
       const invalidateCacheAllUsersByPrefixUserService = container.resolve(
         InvalidateCacheAllUsersByPrefixUserService,
-      )
-
-      const invalidateCacheAllPoliticsService = container.resolve(
-        InvalidateCacheAllPoliticsService,
-      )
-      const invalidateCacheAllQuestionsService = container.resolve(
-        InvalidateCacheAllQuestionsService,
       )
 
       const invalidateCacheAllUsersByUserIdAndCompanyIdDashboardLoggedPrefixService =
@@ -134,10 +76,6 @@ class InvalidateAllCacheService {
           InvalidateCacheAllUsersByEmailColaboratorLoggedPrefixService,
         )
 
-      const invalidateCacheAllCategoriesService = container.resolve(
-        InvalidateCacheAllCategoriesService,
-      )
-
       const invalidateCacheAllUsersReviewsByPrefixUserService =
         container.resolve(InvalidateCacheAllUsersReviewsByPrefixUserService)
 
@@ -146,22 +84,6 @@ class InvalidateAllCacheService {
           InvalidateCacheAllUserByUserIdDashboardLoggedPrefixoService,
         )
 
-      const invalidateCacheTypesProductsPageService = container.resolve(
-        InvalidateCacheTypesProductsPageService,
-      )
-
-      const invalidateCacheAllProductsService = container.resolve(
-        InvalidateCacheAllProductsService,
-      )
-
-      const invalidateAllCacheStocksPageService = container.resolve(
-        InvalidateAllCacheStocksPageService,
-      )
-
-      const invalidateAllCacheSubCategoriesPageService = container.resolve(
-        InvalidateAllCacheSubCategoriesPageService,
-      )
-
       const cachekeyUnitMeasurement = `unitMeasurement`
 
       await Promise.all([
@@ -169,13 +91,6 @@ class InvalidateAllCacheService {
         this.cacheProvider.invalidatePrefix(
           cachekeyGetAggregationProductMeDetailsByAggregationProductId,
         ),
-        invalidateCacheAllReceiversService.execute(),
-        invalidateAllCacheStocksPageService.execute(),
-        invalidateCacheAllProductsService.execute(),
-        invalidateCacheTypesProductsPageService.execute(),
-        invalidateCacheTypesProductsPageService.execute(),
-        invalidateCacheAllPoliticsService.execute(),
-        invalidateCacheAllCategoriesService.execute(),
         invalidateCacheAllUsersReviewsByPrefixUserService.execute(),
         invalidateCacheAllUsersByEmailColaboratorLoggedPrefixService.execute(),
         invalidateCacheAllUsersByEmailDashboardLoggedPrefixService.execute(),
@@ -183,10 +98,6 @@ class InvalidateAllCacheService {
         invalidateCacheAllUsersByUserIdAndCompanyIdDashboardLoggedPrefixService.execute(),
         invalidateCacheAllUsersByUserIdColaboratorLoggedPrefixService.execute(),
         invalidateCacheAllUserByUserIdDashboardLoggedPrefixoService.execute(),
-        invalidateCacheAllQuestionsService.execute(),
-        invalidateAllCacheSubCategoriesPageService.execute(),
-        invalidateCacheAllListCategoriesNotInIdsPaginationByProductIdService.execute(),
-        invalidateCacheAllColorPrefixoService.execute(),
         this.cacheProvider.invalidatePrefix(
           cachekeyGetProductAndAggregationsByProductId,
         ),
@@ -203,12 +114,6 @@ class InvalidateAllCacheService {
         this.cacheProvider.invalidatePrefix(
           cachekeyAggregationsProductsEcommerce,
         ),
-        invalidateCacheListTitleEcommercePaginationService.execute(),
-        invalidateCacheAllPoliticsSummariesService.execute(),
-        invalidateCachekeyAllAggregationsProductsEcommerceSearchService.execute(),
-        invalidateCacheAllBannersPublisherPrefixService.execute(),
-        invalidateCacheAllBannersService.execute(),
-        invalidateCacheAllBannerPrefixoService.execute(),
         this.cacheProvider.invalidatePrefix(
           cachekeyAggregationsProductsEcommerceSearch,
         ),
@@ -216,7 +121,6 @@ class InvalidateAllCacheService {
         this.cacheProvider.invalidatePrefix(
           cachekeyAggregationsProductsByCategoryId,
         ),
-        invalidateAllCacheProviderPaginationService.execute(),
         this.cacheProvider.invalidatePrefix(cachekeyProductDataSheet),
         this.cacheProvider.invalidatePrefix(cachekeyVideo),
         this.cacheProvider.invalidatePrefix(cachekeyProductMin),

@@ -1,6 +1,6 @@
-import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import AppError from '@shared/errors/AppError';
-import { inject, injectable } from 'tsyringe';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider'
+import AppError from '@shared/errors/AppError'
+import { inject, injectable } from 'tsyringe'
 
 @injectable()
 class InvalidateCacheAllUserByUserIdDashboardLoggedPrefixoService {
@@ -11,14 +11,14 @@ class InvalidateCacheAllUserByUserIdDashboardLoggedPrefixoService {
 
   async execute(): Promise<void> {
     try {
-      const cacheAllUserByUserIdDashboardLoggedPrefixo = `userByUserIdDashboardLogged`;
+      const cacheAllUserByUserIdDashboardLoggedPrefixo = `userByUserIdDashboardLogged`
       await this.cacheProvider.invalidatePrefix(
         cacheAllUserByUserIdDashboardLoggedPrefixo,
-      );
+      )
     } catch (error: any) {
-      throw new AppError(error.message, error.statusCode);
+      throw new AppError(error.message, error.statusCode)
     }
   }
 }
 
-export { InvalidateCacheAllUserByUserIdDashboardLoggedPrefixoService };
+export { InvalidateCacheAllUserByUserIdDashboardLoggedPrefixoService }
