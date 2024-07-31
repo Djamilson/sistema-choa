@@ -1,0 +1,15 @@
+{
+  //// yarn add eslint @rocketseat/eslint-config -D
+  "extends":["@rocketseat/eslint-config/react","next/core-web-vitals"],
+  "rules": {
+    "camelcase": "off",
+    "prefer-regex-literals": "off",
+    "no-promise-executor-return": "off",
+    "no-useless-escape":"off",
+    "no-useless-constructor": "off",
+    "no-empty-function": "off",
+    "no-async-promise-executor":"off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-explicit-any": "off"
+  }
+}
