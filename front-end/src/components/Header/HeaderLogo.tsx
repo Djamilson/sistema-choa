@@ -41,8 +41,8 @@ export function HeaderLogo({ href, urlLogo }: IHeaderLogoProps) {
             className="mt-4 px-0 text-center text-lg font-bold tracking-tight text-gray-600 md:text-2xl"
           >
             <Balance>
-              <span className="text-white">Shooferta</span>
-              <span className="ml-2 font-semibold text-orangermy">Shop</span>
+              <span className="text-white">Choa</span>
+              <span className="ml-2 font-semibold text-orangermy">2024</span>
             </Balance>
           </motion.h3>
         </div>

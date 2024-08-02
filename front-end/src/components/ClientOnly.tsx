@@ -21,7 +21,7 @@ const ClientOnly = ({ children }: ClientOnlyProps) => {
   useEffect(() => {
     const cookies = parseCookies()
 
-    const { '_next_auth.sho_oferta.ecommerce.refresh_token': refreshToken } =
+    const { '_next_auth.choa.refresh_token': refreshToken } =
       cookies
 
     const handleRefreshToken = async (refreshToken: string) => {

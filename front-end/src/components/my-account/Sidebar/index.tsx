@@ -49,11 +49,11 @@ const menusSidebar = [
   },
   {
     id: String(uuid()),
-    name: 'outra',
-    slug: 'outros',
+    name: 'Viaturas',
+    slug: 'viaturas',
     icon: getCategoryIcon('endereco'),
-    toUpperCase: 'outros',
-    href: '/outros',
+    toUpperCase: 'viaturas',
+    href: '/cars',
   },
   {
     id: String(uuid()),

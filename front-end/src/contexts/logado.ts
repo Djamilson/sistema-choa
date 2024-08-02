@@ -1,4 +1,4 @@
 export const logado = {
-  nameToken: '_next_auth.sho_oferta.ecommerce.token',
-  nameRefreshToken: '_next_auth.sho_oferta.ecommerce.refresh_token',
+  nameToken: '_next_auth.choa.token',
+  nameRefreshToken: '_next_auth.choa.refresh_token',
 }

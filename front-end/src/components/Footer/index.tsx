@@ -21,7 +21,7 @@ const Footer = () => {
       <div className="w-full bg-neutral-100 py-6">
         <Wrapper className="flex flex-col justify-between gap-[10px] md:flex-row md:gap-0">
           <div className="cursor-pointer text-center text-sm text-neutral-600 hover:text-accent md:text-left">
-            © 2023 Shooferta, Inc. Todos os direitos reservados
+            © Choa 2024, Inc. Todos os direitos reservados
           </div>
 
           <div className="flex flex-wrap justify-center gap-2 text-center md:gap-5 md:text-left">

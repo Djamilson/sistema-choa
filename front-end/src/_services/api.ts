@@ -11,7 +11,7 @@ type TPropsSetCookies = {
 }
 
 export async function setMeCookies({ token, refreshToken }: TPropsSetCookies) {
-  setCookie('_next_auth.sho_oferta.ecommerce.token', token, {
+  setCookie('_next_auth.choa.token', token, {
     maxAge: 60 * 60 * 24 * 7, // 7 days
     path: '/',
     sameSite: true,
@@ -19,7 +19,7 @@ export async function setMeCookies({ token, refreshToken }: TPropsSetCookies) {
     httpOnly: false,
   })
 
-  setCookie('_next_auth.sho_oferta.ecommerce.refresh_token', refreshToken, {
+  setCookie('_next_auth.choa.refresh_token', refreshToken, {
     maxAge: 60 * 60 * 24 * 7, // 7 days
     path: '/',
     sameSite: true,

@@ -21,8 +21,8 @@ export const BASE_PATH = '/api/auth'
 
 export const authConfig = {
   pages: {
-    signIn: '/signin',
-    signOut: '/signin',
+    signIn: '/',
+    signOut: '/',
     error: '/my-error',
   },
   events: {
@@ -67,24 +67,20 @@ export const authConfig = {
 
           const { access_token, refresh_token } = google.data.credentials
 
-          cookies().set('_next_auth.sho_oferta.ecommerce.token', access_token, {
+          cookies().set('_next_auth.choa.token', access_token, {
             maxAge: 60 * 60 * 24 * 7, // 7 days
             path: '/',
             sameSite: true,
             secure: true,
             httpOnly: false,
           })
-          cookies().set(
-            '_next_auth.sho_oferta.ecommerce.refresh_token',
-            refresh_token,
-            {
-              maxAge: 60 * 60 * 24 * 7, // 7 days
-              path: '/',
-              sameSite: true,
-              secure: true,
-              httpOnly: false,
-            },
-          )
+          cookies().set('_next_auth.choa.refresh_token', refresh_token, {
+            maxAge: 60 * 60 * 24 * 7, // 7 days
+            path: '/',
+            sameSite: true,
+            secure: true,
+            httpOnly: false,
+          })
 
           api.defaults.headers.common.authorization = `Bearer ${access_token}`
 

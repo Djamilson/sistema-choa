@@ -17,7 +17,7 @@ export async function doCredentialLogin(formData: IFormDataProps) {
       email: formData.email,
       password: formData.password,
       redirect: false,
-      callbackUrl: '/',
+      callbackUrl: '/dashboard',
     })
 
     const href = getRedirectTo()
@@ -34,8 +34,8 @@ export async function doSocialLogin(formData: any) {
 }
 
 export async function doLogout() {
-  cookies().delete('_next_auth.sho_oferta.ecommerce.token')
-  cookies().delete('_next_auth.sho_oferta.ecommerce.refresh_token')
+  cookies().delete('_next_auth.choa.token')
+  cookies().delete('_next_auth.choa.refresh_token')
 
   cookies().delete('authjs.callback-url')
   cookies().delete('authjs.csrf-token')

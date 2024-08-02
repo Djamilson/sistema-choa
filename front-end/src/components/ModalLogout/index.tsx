@@ -1,6 +1,6 @@
 'use client'
 
-import Logout from '@/app/(public)/(auth)/signin/components/Logout'
+import Logout from '@/components/SignIn/components/Logout'
 import {
   Dialog,
   DialogBackdrop,

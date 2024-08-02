@@ -17,8 +17,8 @@ const ibmPlexSerif = IBM_Plex_Serif({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Home | Shooferta Shop',
-    absolute: 'Shooferta Shop',
+    template: '%s | Home | Choa 2024',
+    absolute: 'Choa 2024',
   },
   description: 'Horizon is a modern banking platform for everyone.',
   icons: {
