@@ -12,7 +12,6 @@ import PersonsRepository from '@modules/users/infra/typeprisma/repositories/Pers
 import PhonesRepository from '@modules/users/infra/typeprisma/repositories/PhoneRepository'
 import UsersCompaniesGroupsRepository from '@modules/users/infra/typeprisma/repositories/UsersCompaniesGroupsRepository'
 import UsersRepository from '@modules/users/infra/typeprisma/repositories/UsersRepository'
-import '@modules/users/providers'
 import IForgotTokensRepository from '@modules/users/repositories/IForgotTokensRepository'
 import IGroupsRepository from '@modules/users/repositories/IGroupsRepository'
 import IPersonsRepository from '@modules/users/repositories/IPersonsRepository'
@@ -20,9 +19,12 @@ import IPhonesRepository from '@modules/users/repositories/IPhonesRepository'
 import IUsersCompaniesGroupsRepository from '@modules/users/repositories/IUsersCompaniesGroupsRepository'
 import IUsersRepository from '@modules/users/repositories/IUsersRepository'
 import { container } from 'tsyringe'
-import './providers'
 import { IDateProvider } from './providers/DateProvider/IDateProvider'
 import DayjsDateProvider from './providers/DateProvider/implementations/DayjsDateProvider'
+
+import './providers'
+import { CarsRepository } from '@modules/cars/infra/typeprisma/repositories/CarsRepository'
+import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository'
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -103,3 +105,5 @@ container.registerSingleton<IVerificationTokensRepository>(
   'VerificationTokensRepository',
   VerificationTokensRepository,
 )
+
+container.registerSingleton<ICarsRepository>('CarsRepository', CarsRepository)

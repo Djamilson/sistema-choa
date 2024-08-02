@@ -104,12 +104,19 @@ model Problem {
 }
 
 model Car {
-  id         String   @id @default(cuid())
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
+  id          String   @id @default(cuid())
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+  description String?
+  name        String
+  acronym     String
+  brand       String
+  plate       String
+  fuel_type   String
 
   maintenances Maintenance[]
   problems     Problem[]
+  photos       Photo[]
 
   @@index([id])
   @@map("cars")
@@ -149,6 +156,19 @@ model Status {
 
   @@index([id])
   @@map("status")
+}
+
+model Photo {
+  id         String   @id @default(cuid())
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  name       String   @db.VarChar
+
+  car_id String
+  car    Car    @relation(fields: [car_id], references: [id])
+
+  @@index([id, car_id])
+  @@map("photos")
 }
 
 //==================================================

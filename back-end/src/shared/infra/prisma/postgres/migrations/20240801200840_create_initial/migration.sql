@@ -75,6 +75,12 @@ CREATE TABLE "cars" (
     "id" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "description" TEXT,
+    "name" TEXT NOT NULL,
+    "acronym" TEXT NOT NULL,
+    "brand" TEXT NOT NULL,
+    "plate" TEXT NOT NULL,
+    "fuel_type" TEXT NOT NULL,
 
     CONSTRAINT "cars_pkey" PRIMARY KEY ("id")
 );
@@ -104,6 +110,17 @@ CREATE TABLE "status" (
     "acronym" TEXT NOT NULL,
 
     CONSTRAINT "status_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "photos" (
+    "id" TEXT NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "name" VARCHAR NOT NULL,
+    "car_id" TEXT NOT NULL,
+
+    CONSTRAINT "photos_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -282,6 +299,9 @@ CREATE UNIQUE INDEX "status_acronym_key" ON "status"("acronym");
 CREATE INDEX "status_id_idx" ON "status"("id");
 
 -- CreateIndex
+CREATE INDEX "photos_id_car_id_idx" ON "photos"("id", "car_id");
+
+-- CreateIndex
 CREATE INDEX "forgot_tokens_id_idx" ON "forgot_tokens"("id");
 
 -- CreateIndex
@@ -367,6 +387,9 @@ ALTER TABLE "maintenances" ADD CONSTRAINT "maintenances_user_who_removed_id_fkey
 
 -- AddForeignKey
 ALTER TABLE "maintenances" ADD CONSTRAINT "maintenances_company_id_fkey" FOREIGN KEY ("company_id") REFERENCES "companies"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "photos" ADD CONSTRAINT "photos_car_id_fkey" FOREIGN KEY ("car_id") REFERENCES "cars"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "forgot_tokens" ADD CONSTRAINT "forgot_tokens_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

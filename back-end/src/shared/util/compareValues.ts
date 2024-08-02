@@ -1,5 +1,6 @@
 export function compareValues(key: any, order = 'asc') {
   return function innerSort(a: any, b: any) {
+    // eslint-disable-next-line no-prototype-builtins
     if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
       return 0
     }

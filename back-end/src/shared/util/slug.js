@@ -1,22 +1,22 @@
 // https://gist.github.com/codeguy/6684588
 
 export default (str) => {
-  str = String(str).toString();
-  str = str.replace(/^\s+|\s+$/g, ''); // trim
-  str = str.toLowerCase();
+  str = String(str).toString()
+  str = str.replace(/^\s+|\s+$/g, '') // trim
+  str = str.toLowerCase()
 
   // remove accents, swap ñ for n, etc
   const swaps = {
-    '0': ['°', '₀', '۰', '０'],
-    '1': ['¹', '₁', '۱', '１'],
-    '2': ['²', '₂', '۲', '２'],
-    '3': ['³', '₃', '۳', '３'],
-    '4': ['⁴', '₄', '۴', '٤', '４'],
-    '5': ['⁵', '₅', '۵', '٥', '５'],
-    '6': ['⁶', '₆', '۶', '٦', '６'],
-    '7': ['⁷', '₇', '۷', '７'],
-    '8': ['⁸', '₈', '۸', '８'],
-    '9': ['⁹', '₉', '۹', '９'],
+    0: ['°', '₀', '۰', '０'],
+    1: ['¹', '₁', '۱', '１'],
+    2: ['²', '₂', '۲', '２'],
+    3: ['³', '₃', '۳', '３'],
+    4: ['⁴', '₄', '۴', '٤', '４'],
+    5: ['⁵', '₅', '۵', '٥', '５'],
+    6: ['⁶', '₆', '۶', '٦', '６'],
+    7: ['⁷', '₇', '۷', '７'],
+    8: ['⁸', '₈', '۸', '８'],
+    9: ['⁹', '₉', '۹', '９'],
     a: [
       'à',
       'á',
@@ -574,17 +574,17 @@ export default (str) => {
     Ya: ['Я'],
     Yu: ['Ю'],
     Zh: ['Ж'],
-  };
+  }
 
   Object.keys(swaps).forEach((swap) => {
     swaps[swap].forEach((s) => {
-      str = str.replace(new RegExp(s, 'g'), swap);
-    });
-  });
+      str = str.replace(new RegExp(s, 'g'), swap)
+    })
+  })
   return str
     .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
     .replace(/\s+/g, '-') // collapse whitespace and replace by -
     .replace(/-+/g, '-') // collapse dashes
     .replace(/^-+/, '') // trim - from start of text
-    .replace(/-+$/, '');
-};
+    .replace(/-+$/, '')
+}

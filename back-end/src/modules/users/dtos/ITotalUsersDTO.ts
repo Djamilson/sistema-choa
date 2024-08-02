@@ -1,7 +1,6 @@
-import User from '@modules/users/infra/typeprisma/entities/User';
+import User from '@modules/users/infra/typeprisma/entities/User'
 
 export type ITotalUsersDTO = {
-  result: User[];
-  total: number;
-};
-
+  result: User[]
+  total: number
+}

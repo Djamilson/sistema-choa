@@ -1,13 +1,9 @@
 import { ObjectId } from 'bson'
 
+type IDataPageDTO = { page: number; pageSize: number; query: string }
+
 type IDataPageNotInIdsDTO = {
   ids: string[]
-  page: number
-  pageSize: number
-  query: string
-}
-
-type IDataPageDTO = {
   page: number
   pageSize: number
   query: string

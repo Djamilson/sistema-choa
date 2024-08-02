@@ -1,5 +1,5 @@
 export default interface IPagDTO {
-  page: number;
-  pageSize: number;
-  query: string;
+  page: number
+  pageSize: number
+  query: string
 }
