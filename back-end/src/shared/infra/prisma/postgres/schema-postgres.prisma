@@ -49,13 +49,13 @@ model Service {
   created_at         DateTime            @default(now())
   updated_at         DateTime            @default(now())
   name               String              @unique @db.VarChar
-  maintenanceServies MaintenanceServie[]
+  maintenanceServies MaintenanceService[]
 
   @@index([id])
   @@map("services")
 }
 
-model MaintenanceServie {
+model MaintenanceService {
   id          String   @id @default(cuid())
   created_at  DateTime @default(now())
   updated_at  DateTime @default(now())
@@ -81,7 +81,7 @@ model Company {
   phone      String   @db.VarChar
 
   maintenances       Maintenance[]
-  maintenanceServies MaintenanceServie[]
+  maintenanceServices MaintenanceService[]
 
   @@index([id])
   @@map("companies")
