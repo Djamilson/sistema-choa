@@ -1,0 +1,354 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../../../../prisma/generated/postgres"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL_POSTGRES_SISTEMA_CHOA")
+}
+
+enum PurchaseStatusEnum {
+  AWAITING          @map("awaiting") //aguardando
+  PROCESSING        @map("processing") //em processamento
+  PROCESSED_ALL     @map("processed") //processado
+  PROCESSED_IN_PART @map("processed in part") //processado em parte
+  CANCELED          @map("canceled") //cancelado
+}
+
+enum NotificationsWhenInStocksStatusEnum {
+  AWAITING      @map("awaiting") //aguardando
+  PROCESSED_ALL @map("processed") //processado
+  CANCELED      @map("canceled") //cancelado
+}
+
+//male female other
+
+enum GenresEnum {
+  MALE   @map("male") //masculino
+  FEMALE @map("female") //feminino
+  OTHER  @map("other") //outros
+}
+
+model Document {
+  id         String   @id @default(cuid())
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  name       String   @db.VarChar
+  status     Boolean  @default(true)
+
+  user_id String
+  user    User   @relation(fields: [user_id], references: [id])
+
+  @@index([id])
+  @@map("documents")
+}
+
+model Service {
+  id                 String              @id @default(cuid())
+  created_at         DateTime            @default(now())
+  updated_at         DateTime            @default(now())
+  name               String              @unique @db.VarChar
+  maintenanceServies MaintenanceServie[]
+
+  @@index([id])
+  @@map("services")
+}
+
+model MaintenanceServie {
+  id          String   @id @default(cuid())
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+  description String
+  status      String
+  price       Decimal? @db.Decimal(10, 2)
+
+  company_id String
+  company    Company @relation(fields: [company_id], references: [id])
+
+  service_id String
+  service    Service @relation(fields: [service_id], references: [id])
+
+  @@index([id, company_id])
+  @@map("maintenance_services")
+}
+
+model Company {
+  id         String   @id @default(cuid())
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  name       String   @unique @db.VarChar
+  phone      String   @db.VarChar
+
+  maintenances       Maintenance[]
+  maintenanceServies MaintenanceServie[]
+
+  @@index([id])
+  @@map("companies")
+}
+
+model Problem {
+  id          String   @id @default(cuid())
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+  description String
+  status      String
+
+  car_id  String
+  car     Car    @relation(fields: [car_id], references: [id])
+  user_id String
+  user    User   @relation(fields: [user_id], references: [id])
+
+  @@index([id])
+  @@map("problems")
+}
+
+model Car {
+  id          String   @id @default(cuid())
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+  description String?
+  name        String
+  acronym     String
+  brand       String
+  plate       String
+  fuel_type   String
+
+  maintenances Maintenance[]
+  problems     Problem[]
+  photos       Photo[]
+
+  @@index([id])
+  @@map("cars")
+}
+
+model Maintenance {
+  id          String   @id @default(cuid())
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+  description String
+  status      String
+  date_out    DateTime
+  date_return DateTime
+
+  car_id              String
+  car                 Car     @relation(fields: [car_id], references: [id])
+  user_who_removed_id String?
+  user_who_removed    User?   @relation(fields: [user_who_removed_id], references: [id])
+
+  //user_who_brought_id String?
+  //user_who_brought    User?   @relation(fields: [user_who_brought_id], references: [id])
+
+  company_id String
+  company    Company @relation(fields: [company_id], references: [id])
+
+  @@index([id])
+  @@map("maintenances")
+}
+
+model Status {
+  id         String   @id @default(cuid())
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  description String @unique
+  acronym     String @unique
+
+  @@index([id])
+  @@map("status")
+}
+
+model Photo {
+  id         String   @id @default(cuid())
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  name       String   @db.VarChar
+
+  car_id String
+  car    Car    @relation(fields: [car_id], references: [id])
+
+  @@index([id, car_id])
+  @@map("photos")
+}
+
+//==================================================
+
+enum GroupsNameEnum {
+  ROLE_SUPER_ADMIN @map("role-super-admin")
+  ROLE_ADMIN       @map("role-admin")
+  ROLE_USER        @map("role-user")
+  ROLE_CLIENT      @map("role-client")
+}
+
+model ForgotToken {
+  id           String   @id @default(cuid())
+  created_at   DateTime @default(now())
+  updated_at   DateTime @default(now())
+  token        String   @db.VarChar
+  code         String   @db.VarChar
+  expires_date DateTime
+  user_id      String
+  user         User     @relation(fields: [user_id], references: [id])
+
+  @@index([id])
+  @@map("forgot_tokens")
+}
+
+model Group {
+  id                 String             @id @default(cuid())
+  created_at         DateTime           @default(now())
+  updated_at         DateTime           @default(now())
+  name               String             @db.VarChar
+  description        String
+  user_company_group UserCompanyGroup[]
+
+  @@index([id])
+  @@map("groups")
+}
+
+model PhonePerson {
+  id           String   @id @default(cuid())
+  created_at   DateTime @default(now())
+  updated_at   DateTime @default(now())
+  phone        String   @db.VarChar
+  person_id    String
+  person       Person   @relation("person_to_phone", fields: [person_id], references: [id])
+  person_phone Person?  @relation("person_phone")
+
+  @@index([id])
+  @@map("phones_persons")
+}
+
+model Person {
+  id                String     @id @default(cuid())
+  created_at        DateTime   @default(now())
+  updated_at        DateTime   @updatedAt
+  name              String     @db.VarChar
+  email             String     @unique
+  cpf               String     @unique
+  rg                String?    @db.VarChar
+  rgss              String?    @db.VarChar
+  birth_date        DateTime?  @db.Date
+  status            Boolean    @default(true)
+  privacy           Boolean    @default(false)
+  promotional_email Boolean    @default(false)
+  gender            GenresEnum @default(OTHER)
+  avatar            String?    @db.VarChar
+
+  // Relation fields
+  phone_id String?       @unique
+  phone    PhonePerson?  @relation("person_phone", fields: [phone_id], references: [id])
+  phones   PhonePerson[] @relation("person_to_phone")
+  users    User[]
+
+  @@index([id])
+  @@map("persons")
+}
+
+model User {
+  id                     String             @id @default(cuid())
+  created_at             DateTime           @default(now())
+  updated_at             DateTime           @default(now())
+  password               String?
+  is_verified            DateTime?
+  person_id              String?
+  person                 Person?            @relation(fields: [person_id], references: [id])
+  forgot_tokens          ForgotToken[]
+  users_companies_groups UserCompanyGroup[]
+
+  documents   Document[]
+  accounts    Account[]
+  sessions    Session[]
+  problems    Problem[]
+  maintenance Maintenance[]
+
+  @@index([id, person_id])
+  @@map("users")
+}
+
+model Account {
+  id                  String @id @default(cuid())
+  user_id             String
+  type                String
+  provider            String
+  provider_account_id String
+
+  refresh_token String? @db.Text
+  access_token  String? @db.Text
+  expires_at    Int?
+  token_type    String?
+  scope         String?
+  id_token      String? @db.Text
+  session_state String?
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@unique([provider, provider_account_id])
+  @@index([user_id])
+  @@map("accounts")
+}
+
+model Session {
+  session_token String   @unique
+  user_id       String
+  expires       DateTime
+  user          User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@index([user_id])
+  @@map("sessions")
+}
+
+model RegisterUser {
+  id              String   @id @default(cuid())
+  code_validation String   @unique
+  email           String
+  expires         DateTime
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@index([id])
+  @@map("registers_users")
+}
+
+model VerificationToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+  @@index([id, email, token])
+  @@map("verifications_tokens")
+}
+
+model PasswordResetToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+  @@index([id])
+  @@map("passwords_reset_tokens")
+}
+
+model UserCompanyGroup {
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  status     Boolean @default(true)
+  group_id   String
+  user_id    String
+  company_id String?
+
+  group Group @relation(fields: [group_id], references: [id])
+  user  User  @relation(fields: [user_id], references: [id])
+
+  @@id([user_id, group_id])
+  @@index([user_id, group_id])
+  @@map("users_companies_groups")
+}
