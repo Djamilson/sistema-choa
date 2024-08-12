@@ -39,7 +39,7 @@ const CarId = ({ params }: IPageProps) => {
 
       <Container>
         <div className="my-10 flex flex-col gap-4 lg:flex-row">
-          <div className="max-w-xs flex-[1] p-[12px]">
+          <div className="max-w-xs flex-[1] bg-white p-[12px]">
             <h3 className="text-lg font-semibold">Menu</h3>
             <div className="mt-4">
               <SideBar />
