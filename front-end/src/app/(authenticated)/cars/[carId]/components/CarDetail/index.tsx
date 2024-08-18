@@ -19,7 +19,7 @@ const CarDetail = ({ params }: ICarDetailProps) => {
   const { handleClickDetailCar, selectedCarPhoto } = useCarDetail()
 
   return (
-    <div className="gap-22 flex-[4] px-2 py-4 md:px-8 md:pb-12 md:pt-4">
+    <div className="w-full border px-2 py-4 md:px-8 md:pb-12 md:pt-4">
       <div className="flex flex-col justify-between gap-6 text-base font-medium text-gray-900">
         <div className="flex w-full flex-col">
           <p>últimas viaturas</p>
@@ -34,7 +34,7 @@ const CarDetail = ({ params }: ICarDetailProps) => {
         </div>
 
         <div className="mt-4">
-          <Wrapper className={`w-full max-w-[1440px] md:mx-auto md:px-2`}>
+          <Wrapper className={`w-full max-w-[1440px]`}>
             <div className="mt-6 flex flex-col gap-[30px] px-1 md:px-4 lg:flex-row lg:gap-[20px]">
               <div className="bg-white px-4 py-4 md:flex">
                 <div className="w-full max-w-[500px] flex-[1.5] md:mx-1 md:w-auto lg:mx-0 lg:max-w-full">

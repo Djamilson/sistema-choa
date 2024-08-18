@@ -90,7 +90,7 @@ function ListCars() {
           >
             <Table.Root>
               <>
-                <div className="relative space-y-4 overflow-x-auto shadow-md">
+                <div className="relative space-y-4 overflow-x-auto">
                   <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
                     <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                       <tr>
@@ -110,7 +110,7 @@ function ListCars() {
                           Price
                         </th>
                         <th scope="col" className="px-6 py-3">
-                          Action
+                          ação
                         </th>
                       </tr>
                     </thead>
@@ -129,7 +129,7 @@ function ListCars() {
                         return (
                           <tr
                             key={car.id}
-                            className="bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-600"
+                            className="border-b bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-600"
                           >
                             <td className="px-6 py-4">{idx + 1}</td>
                             <th
