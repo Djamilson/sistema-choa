@@ -1,12 +1,7 @@
 'use client'
 
 import Container from '@/components/Container'
-import { TypeCategory, useCategories } from '@/hooks/Entity/useCategories'
 import { getCategoryIcon } from '@/utils/getCategoryIcon'
-import { serializableMenuCategory } from '@/utils/serializableMenuCategory'
-import { usePathname } from 'next/navigation'
-import { useMemo } from 'react'
-import { LoadingPulseLoader } from '../loadings/LoadingPulseLoader'
 import { NavLink } from '../NavLink'
 
 export const listSideBarNavMenuInfoEcommerces = [
@@ -25,26 +20,6 @@ export const listSideBarNavMenuInfoEcommerces = [
 ]
 
 export function SideBarNavMenuInfoEcommerce() {
-  const filterMenu = ['contact']
-
-  const {
-    data: categories,
-    isLoading: isLoadingCategories,
-    isFetching: isFetchingCategories,
-  } = useCategories(TypeCategory.MENU)
-
-  const menus = useMemo(
-    () =>
-      categories &&
-      serializableMenuCategory(categories).filter((item) =>
-        filterMenu.includes(item.slug),
-      ),
-    [categories, filterMenu],
-  )
-
-  const count = (menus && menus?.length) || 0
-  const pathname = usePathname()
-
   const activeElementClasses =
     'text-sm md:text-md text-accent border-b-[2px] shadow-gray-300 font-semibold border-b-accent'
   const nonActiveElementClasses =
@@ -56,36 +31,15 @@ export function SideBarNavMenuInfoEcommerce() {
         <div className="flex w-full flex-row items-center justify-end py-2">
           <div className="hidden flex-row md:block">
             <div className="flex flex-row items-center justify-end">
-              {isLoadingCategories && isFetchingCategories && (
-                <LoadingPulseLoader />
-              )}
-              {menus &&
-                menus?.length > 0 &&
-                menus?.map((menu: any, index: any) => {
-                  return (
-                    <div
-                      key={menu.id}
-                      className="flex flex-row text-sm lowercase text-white"
-                    >
-                      <NavLink
-                        href={menu.href}
-                        className={`${
-                          pathname === menu.href
-                            ? activeElementClasses
-                            : nonActiveElementClasses
-                        }`}
-                      >
-                        {menu.toUpperCase}
-                      </NavLink>
+              <div className="flex flex-row text-sm lowercase text-white">
+                <NavLink href={'#'} className={nonActiveElementClasses}>
+                  menu.toUpperCase
+                </NavLink>
 
-                      {index + 1 < count && (
-                        <div className="border-left-[1px] hidden flex-1 px-2 text-center text-sm text-neutral-500 sm:block">
-                          |
-                        </div>
-                      )}
-                    </div>
-                  )
-                })}
+                <div className="border-left-[1px] hidden flex-1 px-2 text-center text-sm text-neutral-500 sm:block">
+                  |
+                </div>
+              </div>
             </div>
           </div>
         </div>

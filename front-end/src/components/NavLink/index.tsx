@@ -1,7 +1,5 @@
-import { handlePrefetchPoliticByPoliticId } from '@/utils/handlePrefetch'
 import Link from 'next/link'
 import { IconType } from 'react-icons'
-
 
 type INavLinkProps = {
   icon?: IconType
@@ -17,7 +15,7 @@ export function NavLink({
   className,
 }: INavLinkProps) {
   return (
-    <Link href={href} onMouseOver={() => handlePrefetchPoliticByPoliticId}>
+    <Link href={href} onMouseOver={() => {}}>
       <div className={`${className} leading-1 flex flex-row items-center`}>
         {Icon && (
           <div className="w-22">

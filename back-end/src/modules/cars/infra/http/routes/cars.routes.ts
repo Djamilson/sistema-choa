@@ -9,7 +9,12 @@ import multer from 'multer'
 import { CreatePhotoCarController } from '../controllers/CreatePhotoCarController'
 import { GetCarByCarIdController } from '../controllers/GetCarByCarIdController'
 import { ListCarsPaginationController } from '../controllers/ListCarsPaginationController'
+import { UpdateAcronymController } from '../controllers/UpdateAcronymController'
+import { UpdateBrandController } from '../controllers/UpdateBrandController'
+import { UpdateDescriptionController } from '../controllers/UpdateDescriptionController'
+import { UpdateFuelTypeController } from '../controllers/UpdateFuelTypeController'
 import { UpdateNameController } from '../controllers/UpdateNameController'
+import { UpdatePlateController } from '../controllers/UpdatePlateController2'
 
 const upload = multer(uploadConfig.multer)
 
@@ -18,6 +23,11 @@ const createCarController = new CreateCarController()
 const listCarsPaginationController = new ListCarsPaginationController()
 const getCarByCarIdController = new GetCarByCarIdController()
 const updateNameController = new UpdateNameController()
+const updateDescriptionController = new UpdateDescriptionController()
+const updateAcronymController = new UpdateAcronymController()
+const updatePlateController = new UpdatePlateController()
+const updateFuelTypeController = new UpdateFuelTypeController()
+const updateBrandController = new UpdateBrandController()
 const createPhotoCarController = new CreatePhotoCarController()
 
 // not logged
@@ -73,6 +83,70 @@ carsRouter.patch(
     },
   }),
   updateNameController.update,
+)
+carsRouter.patch(
+  '/:carId/description',
+  celebrate({
+    [Segments.PARAMS]: {
+      carId: Joi.string().required(),
+    },
+    [Segments.BODY]: {
+      description: Joi.string().required(),
+    },
+  }),
+  updateDescriptionController.update,
+)
+
+carsRouter.patch(
+  '/:carId/plate',
+  celebrate({
+    [Segments.PARAMS]: {
+      carId: Joi.string().required(),
+    },
+    [Segments.BODY]: {
+      plate: Joi.string().required(),
+    },
+  }),
+  updatePlateController.update,
+)
+
+carsRouter.patch(
+  '/:carId/brand',
+  celebrate({
+    [Segments.PARAMS]: {
+      carId: Joi.string().required(),
+    },
+    [Segments.BODY]: {
+      brand: Joi.string().required(),
+    },
+  }),
+  updateBrandController.update,
+)
+
+carsRouter.patch(
+  '/:carId/fuel_type',
+  celebrate({
+    [Segments.PARAMS]: {
+      carId: Joi.string().required(),
+    },
+    [Segments.BODY]: {
+      fuel_type: Joi.string().required(),
+    },
+  }),
+  updateFuelTypeController.update,
+)
+
+carsRouter.patch(
+  '/:carId/acronym',
+  celebrate({
+    [Segments.PARAMS]: {
+      carId: Joi.string().required(),
+    },
+    [Segments.BODY]: {
+      acronym: Joi.string().required(),
+    },
+  }),
+  updateAcronymController.update,
 )
 
 carsRouter.patch(

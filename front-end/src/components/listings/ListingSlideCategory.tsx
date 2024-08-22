@@ -1,6 +1,5 @@
 'use client'
 
-import { TypeCategory, useCategories } from '@/hooks/Entity/useCategories'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import { CategoryView } from '../CardCategory/CategoryView'
@@ -46,14 +45,11 @@ const ListingSlideCategory = () => {
           partialVisible
           customButtonGroup={<CarouselButtonGroup />}
         >
-          {categories.map((category) => (
             <div
               className="my-16 w-full p-0 pb-8 md:my-0 md:p-2 md:pb-6"
-              key={category.id}
             >
               <CategoryView key={category.id} category={category} />
             </div>
-          ))}
         </Carousel>
       )}
     </div>

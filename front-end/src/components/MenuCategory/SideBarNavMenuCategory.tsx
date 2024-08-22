@@ -2,7 +2,7 @@
 
 import { LoadingPulseLoader } from '@/components/loadings/LoadingPulseLoader'
 import { NavLink } from '@/components/NavLink'
-import { TypeCategory, useCategories } from '@/hooks/Entity/useCategories'
+
 import { serializableMenuCategory } from '@/utils/serializableMenuCategory'
 import { usePathname } from 'next/navigation'
 import { useMemo } from 'react'

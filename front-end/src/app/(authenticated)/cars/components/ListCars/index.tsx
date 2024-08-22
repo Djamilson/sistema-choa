@@ -104,10 +104,16 @@ function ListCars() {
                           prefixo
                         </th>
                         <th scope="col" className="px-6 py-3">
-                          lotada atualmente
+                          descrição
                         </th>
                         <th scope="col" className="px-6 py-3">
-                          Price
+                          placa
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          marca
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          combustível
                         </th>
                         <th scope="col" className="px-6 py-3">
                           ação
@@ -117,7 +123,7 @@ function ListCars() {
                     <tbody>
                       {cars && cars.cars?.length < 1 && (
                         <tr className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
-                          <td colSpan={6} className=" left-0 w-full p-4">
+                          <td colSpan={7} className=" left-0 w-full p-4">
                             <div className="flex items-center">
                               Não temos viaturas cadastrada ainda
                             </div>
@@ -138,6 +144,8 @@ function ListCars() {
                             >
                               {car.name}
                             </th>
+                            <td className="px-6 py-4"> {car.acronym}</td>
+                            <td className="px-6 py-4"> {car.description}</td>
                             <td className="px-6 py-4"> {car.plate}</td>
                             <td className="px-6 py-4"> {car.brand}</td>
                             <td className="px-6 py-4"> {car.fuel_type}</td>

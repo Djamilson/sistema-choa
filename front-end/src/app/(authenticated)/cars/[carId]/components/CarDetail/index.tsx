@@ -2,8 +2,11 @@
 import { ButtonLink } from '@/components/buttons/ButtonLink'
 import Wrapper from '@/components/Header/Wrapper'
 import { Hr } from '@/components/Hr'
+import { IconBadge } from '@/components/IconBadge'
 import { useCarByCarId } from '@/hooks/Entity/useCars'
-import { Container } from 'lucide-react'
+import { Container, LayoutDashboard } from 'lucide-react'
+import Image from 'next/image'
+import { DescriptionForm } from '../DescriptionForm'
 import ImageGallery from '../ImageGallery'
 import useCarDetail from './useCarDetail'
 
@@ -14,7 +17,7 @@ type ICarDetailProps = {
 }
 
 const CarDetail = ({ params }: ICarDetailProps) => {
-  const { data: car } = useCarByCarId(String(params.carId))
+  const { data: initialCar } = useCarByCarId(String(params.carId))
 
   const { handleClickDetailCar, selectedCarPhoto } = useCarDetail()
 
@@ -52,7 +55,7 @@ const CarDetail = ({ params }: ICarDetailProps) => {
                   <Hr />
                   <div className="markdown text-md mb-5">
                     <p className="mt-4 line-clamp-3 text-sm font-normal text-gray-500">
-                      {car?.name}
+                      {initialCar?.name}
                     </p>
 
                     <ButtonLink
@@ -63,7 +66,7 @@ const CarDetail = ({ params }: ICarDetailProps) => {
                   </div>
 
                   <Hr />
-                  <div className="mb-10">sdfjhsakjhdfkha edittar</div>
+                  <div className="mb-10">{initialCar?.name}</div>
                   <div className="mb-10">eidta</div>
 
                   <div className="mb-10">dfsafdsa</div>
@@ -71,7 +74,34 @@ const CarDetail = ({ params }: ICarDetailProps) => {
               </div>
             </div>
           </Wrapper>
-          <Container>kjdkljfljalj</Container>
+          <Container>
+            <div className="space-y-4">
+              <div>
+                <div className="flex h-20 items-center gap-x-2">
+                  {initialCar?.thumbnail_url ? (
+                    <Image
+                      className={`inline-block h-12 w-12 rounded-full object-cover ring-2 ring-white`}
+                      height={32}
+                      width={32}
+                      alt="brand"
+                      src={
+                        initialCar?.thumbnail_url || '/images/placeholder.jpg'
+                      }
+                    />
+                  ) : (
+                    <IconBadge icon={LayoutDashboard} />
+                  )}
+                  <h2 className="line-clamp-2 text-lg">{initialCar?.name}</h2>
+                </div>
+
+                <div className="mt-6 gap-y-4  border bg-white px-4 pb-4 pt-3">
+                  {initialCar?.id && (
+                    <DescriptionForm initialCar={initialCar} />
+                  )}
+                </div>
+              </div>
+            </div>
+          </Container>
         </div>
       </div>
     </div>

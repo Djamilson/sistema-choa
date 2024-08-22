@@ -1,10 +1,6 @@
 'use client'
 
-import { TypeCategory, useCategories } from '@/hooks/Entity/useCategories'
-import { serializableMenuCategory } from '@/utils/serializableMenuCategory'
 import { usePathname, useRouter } from 'next/navigation'
-import { useMemo } from 'react'
-import { LoadingPulseLoader } from '../loadings/LoadingPulseLoader'
 import { NavButton } from './NavButton'
 
 type IListingCategoriesProps = {
@@ -13,16 +9,6 @@ type IListingCategoriesProps = {
 
 const ListingCategories = ({ onClose }: IListingCategoriesProps) => {
   const pathname = usePathname()
-  const {
-    data: categories,
-    isLoading: isLoadingCategories,
-    isFetching: isFetchingCategories,
-  } = useCategories(TypeCategory.MENU)
-
-  const menus = useMemo(
-    () => categories && serializableMenuCategory(categories),
-    [categories],
-  )
 
   const { push } = useRouter()
 
@@ -38,27 +24,13 @@ const ListingCategories = ({ onClose }: IListingCategoriesProps) => {
 
   return (
     <>
-      {isLoadingCategories && isFetchingCategories && <LoadingPulseLoader />}
-
       <div className="mb-5 w-full bg-white md:block ">
         <div className="pb-6">
-          {menus &&
-            menus?.length > 0 &&
-            menus?.map((category: any) => {
-              return (
-                <NavButton
-                  icon={category?.icon}
-                  key={category.id}
-                  onClick={() => handleNavButton(category.href)}
-                  title={category.toUpperCase}
-                  className={`${
-                    pathname === category.href
-                      ? activeElementClasses
-                      : nonActiveElementClasses
-                  }`}
-                />
-              )
-            })}
+          <NavButton
+            onClick={() => handleNavButton(`#`)}
+            title={`teste`}
+            className={nonActiveElementClasses}
+          />
         </div>
       </div>
     </>

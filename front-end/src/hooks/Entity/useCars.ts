@@ -7,8 +7,6 @@ export async function getCarByCarId(carId: string): Promise<ICar> {
 
   const { data } = await api.get(url)
 
-  console.log(' data ', data)
-
   return data
 }
 
