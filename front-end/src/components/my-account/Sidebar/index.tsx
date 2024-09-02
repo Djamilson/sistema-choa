@@ -51,7 +51,7 @@ const menusSidebar = [
     id: String(uuid()),
     name: 'Viaturas',
     slug: 'viaturas',
-    icon: getCategoryIcon('endereco'),
+    icon: getCategoryIcon('car'),
     toUpperCase: 'viaturas',
     href: '/cars',
   },

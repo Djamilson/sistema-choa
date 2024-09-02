@@ -26,7 +26,7 @@ export const DescriptionForm = ({ initialCar }: IDescriptionFormProps) => {
     initialCar,
   })
   return (
-    <div className="mt-6  border bg-slate-100 p-4">
+    <div className="mt-6 border bg-slate-100 p-4">
       <div
         className={cn(
           'flex items-center font-medium',

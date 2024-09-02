@@ -55,14 +55,11 @@ export const useDescriptionForm = ({ initialCar }: IDescriptionFormProps) => {
       return data
     },
     onSuccess: (data) => {
-      console.log('datadata:::', data)
+      queryClient.setQueryData(['hydrate-car', data.id], () => {
+        return data
+      })
 
-      queryClient.setQueryData(
-        ['hydrate-car', data.id],
-        (/* oldData: ICar */) => {
-          return data
-        },
-      )
+      queryClient.invalidateQueries({ queryKey: ['hydrate-cars'] })
     },
   })
 

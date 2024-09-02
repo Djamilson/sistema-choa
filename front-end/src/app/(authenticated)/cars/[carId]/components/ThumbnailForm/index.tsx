@@ -1,16 +1,15 @@
 'use client'
 
-import { IProduct } from '@/@model/product/product'
+import { ICar } from '@/@model/car'
 import { Button } from '@/components/buttons/Button'
 import cn from '@/utils/cn'
 import { ImageIcon, ImagePlus, X } from 'lucide-react'
 import Image from 'next/image'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { useState } from 'react'
 import { FileUpload } from './FileUpload'
 
 interface IThumbnailFormProps {
-  initialProduct?: IProduct
-  setInitialProduct: Dispatch<SetStateAction<IProduct>>
+  initialCar?: ICar
 }
 
 const accept = {
@@ -18,10 +17,7 @@ const accept = {
   'image/jpeg': ['.jpg', '.jpeg'],
 }
 
-export const ThumbnailForm = ({
-  initialProduct,
-  setInitialProduct,
-}: IThumbnailFormProps) => {
+export const ThumbnailForm = ({ initialCar }: IThumbnailFormProps) => {
   const [isEditing, setIsEditing] = useState(false)
   const [isLoading, setLoading] = useState(true)
 
@@ -54,18 +50,18 @@ export const ThumbnailForm = ({
       </div>
 
       {!isEditing &&
-        (!initialProduct?.thumbnail_url ? (
+        (!initialCar?.thumbnail_url ? (
           <div className="flex h-60 items-center justify-center  bg-slate-200">
             <ImageIcon className="h-10 w-10 text-slate-500" />
           </div>
         ) : (
-          <div className="aspect-video relative mt-2">
+          <div className="relative mt-2 aspect-video">
             <Image
               width={500}
               height={60}
               sizes="(max-width: 640px) 100vw, (max-width: 768px) 30vw, 13vw"
-              src={initialProduct?.thumbnail_url || '/images/placeholder.jpg'}
-              alt={initialProduct?.subcategory.name}
+              src={initialCar?.thumbnail_url || '/images/placeholder.jpg'}
+              alt={initialCar?.name}
               className={cn(
                 'inline-block  object-cover ring-2 ring-white transition duration-700 ease-in-out group-hover:scale-110 group-hover:opacity-75',
                 isLoading
@@ -77,23 +73,22 @@ export const ThumbnailForm = ({
           </div>
         ))}
 
-      {isEditing && initialProduct?.id && (
+      {isEditing && initialCar?.id && (
         <div className="mb-2">
           <FileUpload
             accept={accept}
-            productId={initialProduct?.id}
+            carId={initialCar?.id}
             toggleEdit={toggleEdit}
-            setInitialProduct={setInitialProduct}
           />
         </div>
       )}
       {/*! isEditing &&
-        initialProduct?.id &&
-        initialProduct?.images_products?.length > 0 && (
+        initialCar?.id &&
+        initialCar?.images_Cars?.length > 0 && (
           <ImageList
-            items={initialProduct.images_products}
-            productId={initialProduct.id}
-            setInitialProduct={setInitialProduct}
+            items={initialCar.images_Cars}
+            CarId={initialCar.id}
+            setInitialCar={setInitialCar}
           />
         ) */}
     </div>

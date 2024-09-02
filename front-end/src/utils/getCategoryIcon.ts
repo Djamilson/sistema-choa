@@ -4,7 +4,11 @@ import { FaCat } from 'react-icons/fa'
 import { FcMediumPriority, FcSalesPerformance } from 'react-icons/fc'
 import { GiFlowerPot, GiPresent, GiSittingDog } from 'react-icons/gi'
 import { HiHome } from 'react-icons/hi'
-import { MdContactPhone, MdOutlineDevicesOther } from 'react-icons/md'
+import {
+  MdContactPhone,
+  MdOutlineDevicesOther,
+  MdOutlineFireTruck,
+} from 'react-icons/md'
 import {
   RiContactsLine,
   RiCoupon3Line,
@@ -27,6 +31,7 @@ export function getCategoryIcon(type: string): ElementType {
     'meus-vales': RiCoupon3Line,
     cadastro: RiContactsLine,
     endereco: RiMapPinLine,
+    car: MdOutlineFireTruck,
 
     'oferta-do-dia': GiPresent,
     contact: MdContactPhone,

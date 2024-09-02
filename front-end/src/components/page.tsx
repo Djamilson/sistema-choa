@@ -2,7 +2,6 @@ import RelatedSlideProducts from '@/components/CardCategory/RelatedSlideProducts
 import Container from '@/components/Container'
 import { CookiesWithDismiss } from '@/components/CookiesWithDismiss'
 import Footer from '@/components/Footer'
-import { HeaderTitle } from '@/components/Header/HeaderTitle'
 import { SideBarNavMenuInfoEcommerce } from '@/components/MenuInfoEcommerce/SideBarNavMenuInfoEcommerce'
 import { MessageInformation } from '@/components/MessageInformation'
 import { ServiceInformation } from '@/components/ServiceInformation'
@@ -18,7 +17,6 @@ import { HeaderMY } from './Header/Header'
 const Home = () => {
   return (
     <div className={`bg-neutral-100`}>
-      <HeaderTitle />
       <HeaderMY />
       <SideBarNavMenuInfoEcommerce />
       <div className="w-full border-b-[1px] shadow-sm">

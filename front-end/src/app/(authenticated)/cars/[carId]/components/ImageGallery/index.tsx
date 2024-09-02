@@ -21,10 +21,11 @@ const ImageGallery = ({ photos }: IProductDetailsCarouselProps) => {
             className="group overflow-hidden bg-gray-100 ring-accent ring-offset-slate-50 hover:bg-accent hover:ring-2 hover:ring-offset-2"
           >
             <Image
-              src={img.photo_url || '/images/placeholder.jpg'}
+              src={img?.photo_url || '/images/placeholder.jpg'}
               onClick={() => setSelectedImage(index)}
               width={200}
               height={200}
+              priority
               alt={`${img.name} ${index + 1}`}
               className={cn(
                 `h-full w-full cursor-pointer object-cover object-center transition duration-700 ease-in-out group-hover:scale-110 group-hover:opacity-75 `,
@@ -44,7 +45,7 @@ const ImageGallery = ({ photos }: IProductDetailsCarouselProps) => {
       <div className="group relative overflow-hidden bg-gray-100 lg:col-span-4">
         {photos && (
           <Image
-            src={photos[selectedImage].photo_url || '/images/placeholder.jpg'}
+            src={photos[selectedImage]?.photo_url || '/images/placeholder.jpg'}
             alt="Photo"
             width={500}
             height={500}

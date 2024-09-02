@@ -1,9 +1,8 @@
 'use client'
 
-import { IOrder } from '@/@model/order/order'
 import useLoadingOnClickButtonModal from '@/components/loadings/LoadingOnClickButtonModal/useLoadingOnClickButtonModal'
 import useGetUserBySession from '@/hooks/auth/useGetUserBySession'
-import { useAllOrderByUserId } from '@/hooks/Entity/useOrders'
+
 import { useEffect, useState } from 'react'
 
 const object = {

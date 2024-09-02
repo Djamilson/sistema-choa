@@ -1,18 +1,16 @@
 'use client'
 
-import { IProduct } from '@/@model/product/product'
 import { api } from '@/_services/apiClient'
 import { Toast } from '@/components/Toast'
 import { getQueryClient } from '@/tanStackQuery/getQueryClient'
 import { useMutation } from '@tanstack/react-query'
-import { Dispatch, SetStateAction, useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useDropzone as useDropzoneReactDropzone } from 'react-dropzone'
 
 const queryClient = getQueryClient()
 
 export interface IFileUploadProps {
-  productId: string
-  setInitialProduct: Dispatch<SetStateAction<IProduct>>
+  carId: string
   accept: {
     'image/png': string[]
     'image/jpeg': string[]
@@ -22,30 +20,27 @@ export interface IFileUploadProps {
 
 export const useFileUpload = ({
   accept,
-  productId,
+  carId,
   toggleEdit,
-  setInitialProduct,
 }: IFileUploadProps) => {
   const [selectedFileUrl, setSelectedFileUrl] = useState('')
 
-  const { isPending: isLoading, mutateAsync: updatePhotoProductMutateAsync } =
+  const { isPending: isLoading, mutateAsync: updatePhotocarMutateAsync } =
     useMutation({
       mutationFn: async (photo: FormData) => {
-        const { data } = await api.patch(
-          `products/${productId}/thumbnail`,
-          photo,
-        )
+        const { data } = await api.patch(`cars/${carId}/thumbnail`, photo)
 
-        setInitialProduct(data)
+        // setInitialcar(data)
 
         return data
       },
 
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: ['hydrate-product-id', productId],
+      onSuccess: (data) => {
+        queryClient.setQueryData(['hydrate-car', carId], () => {
+          return data
         })
-        queryClient.invalidateQueries({ queryKey: ['hydrate-products'] })
+
+        queryClient.invalidateQueries({ queryKey: ['hydrate-cars'] })
       },
     })
 
@@ -61,12 +56,12 @@ export const useFileUpload = ({
         const data = new FormData()
 
         data.append('file', file)
-        data.append('productId', productId)
+        data.append('carId', carId)
 
         const fileUrl = URL.createObjectURL(file)
 
         setSelectedFileUrl(fileUrl)
-        await updatePhotoProductMutateAsync(data)
+        await updatePhotocarMutateAsync(data)
 
         Toast({
           message: 'Imagem adicionada com sucesso! 👍',
@@ -80,7 +75,7 @@ export const useFileUpload = ({
         })
       }
     },
-    [updatePhotoProductMutateAsync, toggleEdit, productId],
+    [updatePhotocarMutateAsync, toggleEdit, carId],
   )
 
   const { getRootProps, getInputProps, isDragActive } =

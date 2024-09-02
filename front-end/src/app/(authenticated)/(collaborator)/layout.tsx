@@ -8,7 +8,6 @@ import { CookiesWithDismiss } from '@/components/CookiesWithDismiss'
 import Footer from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { HeaderRoot } from '@/components/Header/HeaderRoot'
-import { HeaderTitle } from '@/components/Header/HeaderTitle'
 import { SideBarNavMenuCategory } from '@/components/MenuCategory/SideBarNavMenuCategory'
 import { SideBarNavMenuInfoEcommerce } from '@/components/MenuInfoEcommerce/SideBarNavMenuInfoEcommerce'
 import SideBar from '@/components/my-account/Sidebar'
@@ -29,7 +28,6 @@ const Layout = async ({ children }: ILayoutProps) => {
 
   return (
     <div className={`bg-neutral-100`}>
-      <HeaderTitle />
       <HeaderRoot>
         <Header.Logo href="/" urlLogo="/images/logo.png" />
         <ContainerSession />
