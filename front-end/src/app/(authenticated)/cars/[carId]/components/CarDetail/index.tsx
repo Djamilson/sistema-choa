@@ -3,12 +3,11 @@ import Wrapper from '@/components/Header/Wrapper'
 import { Hr } from '@/components/Hr'
 import { IconBadge } from '@/components/IconBadge'
 import { useCarByCarId } from '@/hooks/Entity/useCars'
-import { ImageIcon, LayoutDashboard } from 'lucide-react'
+import { ImageIcon } from 'lucide-react'
 import Image from 'next/image'
 import { ContainerPhoto } from '../ContainerPhoto'
 import { DescriptionForm } from '../DescriptionForm'
 import ImageGallery from '../ImageGallery'
-import { ThumbnailForm } from '../ThumbnailForm'
 
 type ICarDetailProps = {
   params: {
@@ -56,23 +55,6 @@ const CarDetail = ({ params }: ICarDetailProps) => {
         <div className="mt-10 grid grid-cols-1 gap-6 text-gray-700 md:grid-cols-2">
           <div className="space-y-4">
             <div>
-              <div className="flex h-20 items-center gap-x-2">
-                {initialCar?.thumbnail_url ? (
-                  <Image
-                    className={`inline-block h-12 w-12 rounded-full object-cover ring-2 ring-white`}
-                    height={32}
-                    width={32}
-                    alt="brand"
-                    src={initialCar?.thumbnail_url || '/images/placeholder.jpg'}
-                  />
-                ) : (
-                  <IconBadge icon={LayoutDashboard} />
-                )}
-                <h2 className="line-clamp-2 text-lg">{initialCar?.name}</h2>
-              </div>
-
-              <div className="mt-2 gap-y-4 bg-white px-2 pb-4">
-                {initialCar?.id && <ThumbnailForm initialCar={initialCar} />}
                 <div className="space-y-4">
                   <div>
                     <div className="flex items-center gap-x-2">
