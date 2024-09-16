@@ -5,6 +5,7 @@ import { IconBadge } from '@/components/IconBadge'
 import { useCarByCarId } from '@/hooks/Entity/useCars'
 import { ImageIcon, LayoutDashboard } from 'lucide-react'
 import Image from 'next/image'
+import { ContainerPhoto } from '../ContainerPhoto'
 import { DescriptionForm } from '../DescriptionForm'
 import ImageGallery from '../ImageGallery'
 import { ThumbnailForm } from '../ThumbnailForm'
@@ -20,8 +21,8 @@ const CarDetail = ({ params }: ICarDetailProps) => {
   console.log('coo:', initialCar)
 
   return (
-    <div className="w-full border px-2 py-4 md:px-8 md:pb-12 md:pt-4">
-      <div className="flex flex-col justify-between gap-6 text-base font-medium text-gray-900">
+    <div className="w-full  bg-white px-2 py-4 md:px-8 md:pb-12 md:pt-4">
+      <div className="flex flex-col justify-between gap-6 bg-white text-base font-medium text-gray-900">
         <div className="flex w-full flex-col">
           <p>últimas viaturas</p>
           <p className="mt-0.5 text-sm text-gray-500">
@@ -40,18 +41,10 @@ const CarDetail = ({ params }: ICarDetailProps) => {
             </div>
             <div className="mt-6 w-full flex-[1] py-2 md:ml-6 md:mt-0 md:max-w-[380px]">
               <p className="mb-4 line-clamp-3 text-sm font-bold leading-none text-neutral-500 md:text-lg">
-                initialCar && initialCar?.subcategory?.name
-                {JSON.stringify(initialCar, null, 2)}
+                {initialCar && initialCar?.name}
               </p>
 
               <Hr />
-
-              <div className="mb-10">
-                {initialCar?.id && <DescriptionForm initialCar={initialCar} />}
-              </div>
-              <div className="mb-10">
-                {initialCar?.id && <DescriptionForm initialCar={initialCar} />}
-              </div>
 
               <div className="mb-10">
                 {initialCar?.id && <DescriptionForm initialCar={initialCar} />}
@@ -60,7 +53,7 @@ const CarDetail = ({ params }: ICarDetailProps) => {
           </div>
         </Wrapper>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 bg-white text-gray-700 md:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-6 text-gray-700 md:grid-cols-2">
           <div className="space-y-4">
             <div>
               <div className="flex h-20 items-center gap-x-2">
@@ -78,11 +71,20 @@ const CarDetail = ({ params }: ICarDetailProps) => {
                 <h2 className="line-clamp-2 text-lg">{initialCar?.name}</h2>
               </div>
 
-              <div className="mt-6 gap-y-4 border bg-white px-4 pb-4 pt-3">
+              <div className="mt-2 gap-y-4 bg-white px-2 pb-4">
                 {initialCar?.id && <ThumbnailForm initialCar={initialCar} />}
-                {initialCar?.id && <DescriptionForm initialCar={initialCar} />}
-                {initialCar?.id && <DescriptionForm initialCar={initialCar} />}
-                {initialCar?.id && <DescriptionForm initialCar={initialCar} />}
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex items-center gap-x-2">
+                      <IconBadge icon={ImageIcon} />
+                      <h2 className="text-xl">Imagens da viatura</h2>
+                    </div>
+                    <ContainerPhoto
+                      photos={initialCar?.photos}
+                      initialCar={initialCar}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -100,7 +102,13 @@ const CarDetail = ({ params }: ICarDetailProps) => {
               ) : (
                 <IconBadge icon={ImageIcon} />
               )}
-              <h2 className="line-clamp-2 text-lg">Marca</h2>
+              <h2 className="line-clamp-2 text-lg">Marca aqui</h2>
+            </div>
+
+            <div className="mt-2 gap-y-4 bg-white px-2 pb-4">
+              {initialCar?.id && <DescriptionForm initialCar={initialCar} />}
+              {initialCar?.id && <DescriptionForm initialCar={initialCar} />}
+              {initialCar?.id && <DescriptionForm initialCar={initialCar} />}
             </div>
           </div>
         </div>
