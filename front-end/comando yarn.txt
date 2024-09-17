@@ -1,0 +1,31 @@
+frontend
+yarn add -D @rocketseat/eslint-config tailwindcss@latest postcss autoprefixer clsx eslint prettier prettier-plugin-tailwindcss tailwind-merge
+
+ yarn add @tanstack/react-query
+ yarn add -D @tanstack/react-query-devtools
+
+
+#instalar o NodeJS
+
+# Using Ubuntu
+https://github.com/nodesource/distributions
+
+# Using Ubuntu
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&\
+sudo apt-get install -y nodejs
+
+
+cartão de teste mercado pago
+
+Mastercard 5031 4332 1540 6351 123 11/25
+Visa 4235 6477 2802 5682 123 11/25
+American Express 3753 651535 56885 1234 11/25
+
+
+APRO Pagamento aprovado (CPF) 12345678909
+OTHE Recusado por erro geral (CPF) 12345678909
+CONT Pagamento pendente -
+
+
+/////teste
+yarn add @babel/core @babel/preset-env @babel/preset-react @testing-library/jest-dom @testing-library/react @testing-library/user-event babel-jest identity-obj-proxy jest jest-environment-jsdom -D

@@ -1,0 +1,10 @@
+deploy do banco de dados
+
+https://console.neon.tech/app/projects/noisy-field-428533
+
+deploy backend
+vercel
+
+backend
+ yarn add --dev prisma@latest
+ yarn add @prisma/client@latest

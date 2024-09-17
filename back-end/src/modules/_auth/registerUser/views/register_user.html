@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Reserva</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f7f7f7;
+        }
+
+        .message-content {
+          text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            max-width: 600px;
+            font-size: 18px;
+            color: #5f6368;
+            line-height: 21px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content {
+            color: #565a5c;
+            font-size: 14px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .content-code {
+          color: #565a5c;
+          font-size: 16px;
+          margin: 10px 0;
+          font-weight: bold;
+          letter-spacing: 5px;
+          text-align: center;
+        }
+
+        .footer {
+            text-align: center;
+            color: #abadae;
+            font-size: 11px;
+            margin: 20px 0;
+        }
+
+        .footer a {
+            color: #abadae;
+            text-decoration: underline;
+        }
+
+        .spacer {
+            height: 20px;
+            line-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="message-content">
+        <div class="spacer"></div>
+        <p class="content">Olá, {{name}}!</p>
+        <div class="spacer"></div>
+        <p class="content">Copie o seu código de válidação:</p>
+
+        <p class="content-code">
+          {{code}}
+      </p>
+
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+
+        <p class="content">Obrigado!<br /><strong>Equipe da Shooferta Shop</strong></p>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <div class="footer">
+            © Shooferta Shop, Quadra 1003 sul, Palmas-TO<br />
+            Esta mensagem foi enviada para <a href="mailto:{{email}}">{{email}}</a> e destina a {{name}}. Não é sua conta? <a href="#" target="_blank">Remova seu email</a> dessa conta.
+        </div>
+        <div class="spacer"></div>
+    </div>
+</body>
+</html>
