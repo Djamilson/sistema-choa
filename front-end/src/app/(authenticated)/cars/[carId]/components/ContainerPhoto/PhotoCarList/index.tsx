@@ -3,10 +3,10 @@
 import { IPhoto } from '@/@model/photo/photo'
 import DialogModal from '@/components/modals/DialogModal'
 import cn from '@/utils/cn'
-import { Grip, Loader2, Trash } from 'lucide-react'
+import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd'
+import { Loader2, Trash } from 'lucide-react'
 import Image from 'next/image'
 import { usePhotoCarList } from './usePhotoCarList'
-import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd'
 
 export type IPhotoCarListProps = {
   initialPhotos?: IPhoto[]
@@ -65,23 +65,13 @@ export const PhotoCarList = ({ initialPhotos, carId }: IPhotoCarListProps) => {
                   {(provided) => (
                     <div
                       className={cn(
-                        'group mb-4 flex items-center gap-x-2  border border-slate-200 bg-slate-200 text-sm text-slate-700',
+                        'group mb-4 flex items-center gap-x-2 border border-slate-200 bg-slate-200 text-sm text-slate-700',
                         !!image?.id && 'border-sky-200 bg-sky-100 text-sky-700',
                       )}
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                     >
-                      <div
-                        className={cn(
-                          'rounded-l-md border-r border-r-slate-200 px-2 py-3 transition group-hover:bg-slate-300',
-                          !!image?.id &&
-                            'border-r-sky-200 group-hover:bg-sky-200',
-                        )}
-                        {...provided.dragHandleProps}
-                      >
-                        <Grip className="h-5 w-5" />
-                      </div>
-                      <div className="group relative mb-2 mt-2 flex aspect-video h-40 overflow-hidden  bg-white p-2 shadow-lg transition-shadow duration-300 ease-in-out hover:transform">
+                      <div className="group relative mb-2 ml-6 mt-2 flex aspect-video h-40 overflow-hidden bg-white p-2 shadow-lg transition-shadow duration-300 ease-in-out hover:transform">
                         <Image
                           width={500}
                           height={40}
@@ -89,7 +79,7 @@ export const PhotoCarList = ({ initialPhotos, carId }: IPhotoCarListProps) => {
                           src={image.photo_url || '/images/placeholder.jpg'}
                           alt="Upload"
                           className={cn(
-                            'inline-block  object-cover ring-2 ring-white transition duration-700 ease-in-out group-hover:scale-110 group-hover:opacity-75',
+                            'inline-block object-cover ring-2 ring-white transition duration-700 ease-in-out group-hover:scale-110 group-hover:opacity-75',
                             isLoading
                               ? 'scale-110 blur-2xl grayscale'
                               : 'scale-100 blur-0 grayscale-0',

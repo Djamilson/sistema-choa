@@ -8,13 +8,13 @@ import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { INameFormProps } from '.'
-import { validationSchemaName } from './schema'
-import { FormInputName } from './types'
+import { IPlateFormProps } from '.'
+import { validationSchemaPlate } from './schema'
+import { FormInputPlate } from './types'
 
 const queryClient = getQueryClient()
 
-export const useNameForm = ({ initialCar }: INameFormProps) => {
+export const usePlateForm = ({ initialCar }: IPlateFormProps) => {
   const [isEditing, setIsEditing] = useState(false)
 
   const router = useRouter()
@@ -24,32 +24,32 @@ export const useNameForm = ({ initialCar }: INameFormProps) => {
     handleSubmit,
     setValue,
     formState: { errors, isSubmitting, isValid },
-  } = useForm<FormInputName>({
-    resolver: zodResolver(validationSchemaName),
+  } = useForm<FormInputPlate>({
+    resolver: zodResolver(validationSchemaPlate),
     defaultValues: {
-      name: '',
+      plate: '',
     },
   })
 
   const toggleEdit = () => {
     setIsEditing((current) => {
-      if (initialCar && current && initialCar?.name) {
-        setValue('name', initialCar?.name)
+      if (initialCar && current && initialCar?.plate) {
+        setValue('plate', initialCar?.plate)
       }
       return !current
     })
   }
 
   useEffect(() => {
-    if (initialCar && initialCar?.name) {
-      setValue('name', initialCar?.name)
+    if (initialCar && initialCar?.plate) {
+      setValue('plate', initialCar?.plate)
     }
   }, [initialCar, setValue])
 
   const { mutateAsync: updateCarMutateAsync } = useMutation({
-    mutationFn: async ({ name }: FormInputName) => {
-      const { data } = await api.patch(`cars/${initialCar.id}/name`, {
-        name,
+    mutationFn: async ({ plate }: FormInputPlate) => {
+      const { data } = await api.patch(`cars/${initialCar.id}/plate`, {
+        plate,
       })
 
       return data
@@ -63,9 +63,9 @@ export const useNameForm = ({ initialCar }: INameFormProps) => {
     },
   })
 
-  const onSubmit: SubmitHandler<FormInputName> = async (data) => {
+  const onSubmit: SubmitHandler<FormInputPlate> = async (data) => {
     try {
-      if (initialCar?.name === data?.name) {
+      if (initialCar?.plate === data?.plate) {
         Toast({
           message:
             'Infelizmente não foi feito nenhuma alteração ainda, tente novamente!',

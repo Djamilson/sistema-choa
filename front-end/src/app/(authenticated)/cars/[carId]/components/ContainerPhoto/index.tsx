@@ -134,10 +134,12 @@ export const ContainerPhoto = ({
         initialCar?.id &&
         initialCar?.photos &&
         initialCar?.photos?.length > 0 && (
-          <PhotoCarList
-            carId={initialCar.id}
-            initialPhotos={initialCar?.photos}
-          />
+          <div className={`mt-4`}>
+            <PhotoCarList
+              carId={initialCar.id}
+              initialPhotos={initialCar?.photos}
+            />
+          </div>
         )}
     </div>
   )

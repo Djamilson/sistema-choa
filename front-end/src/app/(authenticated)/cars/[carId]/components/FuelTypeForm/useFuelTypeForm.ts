@@ -8,13 +8,13 @@ import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { INameFormProps } from '.'
-import { validationSchemaName } from './schema'
-import { FormInputName } from './types'
+import { IFuelTypeFormProps } from '.'
+import { validationSchemaFuelType } from './schema'
+import { FormInputFuelType } from './types'
 
 const queryClient = getQueryClient()
 
-export const useNameForm = ({ initialCar }: INameFormProps) => {
+export const useFuelTypeForm = ({ initialCar }: IFuelTypeFormProps) => {
   const [isEditing, setIsEditing] = useState(false)
 
   const router = useRouter()
@@ -24,32 +24,32 @@ export const useNameForm = ({ initialCar }: INameFormProps) => {
     handleSubmit,
     setValue,
     formState: { errors, isSubmitting, isValid },
-  } = useForm<FormInputName>({
-    resolver: zodResolver(validationSchemaName),
+  } = useForm<FormInputFuelType>({
+    resolver: zodResolver(validationSchemaFuelType),
     defaultValues: {
-      name: '',
+      fuel_type: '',
     },
   })
 
   const toggleEdit = () => {
     setIsEditing((current) => {
-      if (initialCar && current && initialCar?.name) {
-        setValue('name', initialCar?.name)
+      if (initialCar && current && initialCar?.fuel_type) {
+        setValue('fuel_type', initialCar?.fuel_type)
       }
       return !current
     })
   }
 
   useEffect(() => {
-    if (initialCar && initialCar?.name) {
-      setValue('name', initialCar?.name)
+    if (initialCar && initialCar?.fuel_type) {
+      setValue('fuel_type', initialCar?.fuel_type)
     }
   }, [initialCar, setValue])
 
   const { mutateAsync: updateCarMutateAsync } = useMutation({
-    mutationFn: async ({ name }: FormInputName) => {
-      const { data } = await api.patch(`cars/${initialCar.id}/name`, {
-        name,
+    mutationFn: async ({ fuel_type }: FormInputFuelType) => {
+      const { data } = await api.patch(`cars/${initialCar.id}/fuel_type`, {
+        fuel_type,
       })
 
       return data
@@ -63,9 +63,9 @@ export const useNameForm = ({ initialCar }: INameFormProps) => {
     },
   })
 
-  const onSubmit: SubmitHandler<FormInputName> = async (data) => {
+  const onSubmit: SubmitHandler<FormInputFuelType> = async (data) => {
     try {
-      if (initialCar?.name === data?.name) {
+      if (initialCar?.fuel_type === data?.fuel_type) {
         Toast({
           message:
             'Infelizmente não foi feito nenhuma alteração ainda, tente novamente!',

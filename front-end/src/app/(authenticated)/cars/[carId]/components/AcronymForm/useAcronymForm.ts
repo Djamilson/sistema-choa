@@ -8,13 +8,13 @@ import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { INameFormProps } from '.'
-import { validationSchemaName } from './schema'
-import { FormInputName } from './types'
+import { IAcronymFormProps } from '.'
+import { validationSchemaAcronym } from './schema'
+import { FormInputAcronym } from './types'
 
 const queryClient = getQueryClient()
 
-export const useNameForm = ({ initialCar }: INameFormProps) => {
+export const useAcronymForm = ({ initialCar }: IAcronymFormProps) => {
   const [isEditing, setIsEditing] = useState(false)
 
   const router = useRouter()
@@ -24,32 +24,32 @@ export const useNameForm = ({ initialCar }: INameFormProps) => {
     handleSubmit,
     setValue,
     formState: { errors, isSubmitting, isValid },
-  } = useForm<FormInputName>({
-    resolver: zodResolver(validationSchemaName),
+  } = useForm<FormInputAcronym>({
+    resolver: zodResolver(validationSchemaAcronym),
     defaultValues: {
-      name: '',
+      acronym: '',
     },
   })
 
   const toggleEdit = () => {
     setIsEditing((current) => {
-      if (initialCar && current && initialCar?.name) {
-        setValue('name', initialCar?.name)
+      if (initialCar && current && initialCar?.acronym) {
+        setValue('acronym', initialCar?.acronym)
       }
       return !current
     })
   }
 
   useEffect(() => {
-    if (initialCar && initialCar?.name) {
-      setValue('name', initialCar?.name)
+    if (initialCar && initialCar?.acronym) {
+      setValue('acronym', initialCar?.acronym)
     }
   }, [initialCar, setValue])
 
   const { mutateAsync: updateCarMutateAsync } = useMutation({
-    mutationFn: async ({ name }: FormInputName) => {
-      const { data } = await api.patch(`cars/${initialCar.id}/name`, {
-        name,
+    mutationFn: async ({ acronym }: FormInputAcronym) => {
+      const { data } = await api.patch(`cars/${initialCar.id}/acronym`, {
+        acronym,
       })
 
       return data
@@ -63,9 +63,9 @@ export const useNameForm = ({ initialCar }: INameFormProps) => {
     },
   })
 
-  const onSubmit: SubmitHandler<FormInputName> = async (data) => {
+  const onSubmit: SubmitHandler<FormInputAcronym> = async (data) => {
     try {
-      if (initialCar?.name === data?.name) {
+      if (initialCar?.acronym === data?.acronym) {
         Toast({
           message:
             'Infelizmente não foi feito nenhuma alteração ainda, tente novamente!',
