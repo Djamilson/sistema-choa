@@ -19,10 +19,17 @@ class UpdatePlateService {
 
   public async execute({ carId, plate }: IRequest): Promise<any> {
     try {
-      const checkCarExists = await this.carsRepository.findCarByCarId(carId)
+      const [checkCarExists, checkCarExistsPlate] = await Promise.all([
+        this.carsRepository.findCarByCarId(carId),
+        this.carsRepository.findCarByPlate(carId),
+      ])
 
       if (!checkCarExists) {
         throw new AppError('Car not exists', 401)
+      }
+
+      if (checkCarExistsPlate) {
+        throw new AppError('Plate already use', 401)
       }
 
       await this.carsRepository.update({
