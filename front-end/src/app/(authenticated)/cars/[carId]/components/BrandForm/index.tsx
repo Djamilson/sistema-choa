@@ -33,7 +33,7 @@ export const BrandForm = ({ initialCar }: IBrandFormProps) => {
           !isEditing ? `justify-between` : `justify-end`,
         )}
       >
-        {!isEditing && <span>Descrição</span>}
+        {!isEditing && <span>Marca</span>}
         {isSubmitting && (
           <div className="flex items-center justify-center">
             <Loader2 className="h-8 w-8 animate-spin text-accent" />
@@ -41,7 +41,7 @@ export const BrandForm = ({ initialCar }: IBrandFormProps) => {
         )}
         <ButtonSwitch toggle={toggleEdit} isEditing={isEditing} />
       </div>
-      {!isEditing && <p className="mt-2 text-sm">{initialCar?.description}</p>}
+      {!isEditing && <p className="mt-2 text-sm">{initialCar?.brand}</p>}
       {isEditing && (
         <form
           className="mt-4 space-y-4"
@@ -49,8 +49,8 @@ export const BrandForm = ({ initialCar }: IBrandFormProps) => {
           id={`formEditBrand-${initialCar.id}`}
         >
           <TextAreaFloat.Root
-            name="description"
-            label="Descrição"
+            name="brand"
+            label="Marca"
             disabled={!isValid || isSubmitting}
             register={register}
             errors={errors}

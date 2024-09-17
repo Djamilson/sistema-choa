@@ -11,6 +11,7 @@ import ImageGallery from '../ImageGallery'
 import { NameForm } from '../NameForm'
 import { PlateForm } from '../PlateForm'
 import { AcronymForm } from '../AcronymForm'
+import { FuelTypeForm } from '../FuelTypeForm'
 
 type ICarDetailProps = {
   params: {
@@ -81,7 +82,7 @@ const CarDetail = ({ params }: ICarDetailProps) => {
                   {initialCar?.id && <AcronymForm initialCar={initialCar} />}
                   {initialCar?.id && <PlateForm initialCar={initialCar} />}
                   {initialCar?.id && <BrandForm initialCar={initialCar} />}
-                  {initialCar?.id && <FuelTypeForm initialCar={initialCar} />}                  
+                  {initialCar?.id && <FuelTypeForm initialCar={initialCar} />}
                   {initialCar?.id && (
                     <DescriptionForm initialCar={initialCar} />
                   )}
