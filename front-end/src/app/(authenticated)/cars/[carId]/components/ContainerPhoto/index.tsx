@@ -37,7 +37,7 @@ export const ContainerPhoto = ({
   })
 
   return (
-    <div className="mt-6 gap-y-4  border bg-white p-4">
+    <div className="mt-6 gap-y-4 border-t bg-white p-4">
       <div className="mb-4 flex items-center justify-between font-medium">
         Fotos do viatura
         <div className="max-w-md">

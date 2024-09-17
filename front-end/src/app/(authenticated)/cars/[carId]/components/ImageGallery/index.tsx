@@ -1,6 +1,7 @@
 'use client'
 import { IPhoto } from '@/@model/photo/photo'
 import cn from '@/utils/cn'
+import { ensureHttp } from '@/utils/ensureHttp'
 import Image from 'next/image'
 import { useState } from 'react'
 
@@ -21,7 +22,10 @@ const ImageGallery = ({ photos }: IProductDetailsCarouselProps) => {
             className="group overflow-hidden bg-gray-100 ring-accent ring-offset-slate-50 hover:bg-accent hover:ring-2 hover:ring-offset-2"
           >
             <Image
-              src={img?.photo_url || '/images/placeholder.jpg'}
+              src={
+                (img?.photo_url && ensureHttp(img?.photo_url)) ||
+                '/images/placeholder.jpg'
+              }
               onClick={() => setSelectedImage(index)}
               width={200}
               height={200}
@@ -45,7 +49,11 @@ const ImageGallery = ({ photos }: IProductDetailsCarouselProps) => {
       <div className="group relative overflow-hidden bg-gray-100 lg:col-span-4">
         {photos && (
           <Image
-            src={photos[selectedImage]?.photo_url || '/images/placeholder.jpg'}
+            src={
+              (photos[selectedImage]?.photo_url &&
+                ensureHttp(photos[selectedImage]?.photo_url)) ||
+              '/images/placeholder.jpg'
+            }
             alt="Photo"
             width={500}
             height={500}

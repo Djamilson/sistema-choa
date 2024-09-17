@@ -3,6 +3,7 @@ import Wrapper from '@/components/Header/Wrapper'
 import { Hr } from '@/components/Hr'
 import { IconBadge } from '@/components/IconBadge'
 import { useCarByCarId } from '@/hooks/Entity/useCars'
+import { ensureHttp } from '@/utils/ensureHttp'
 import { ImageIcon } from 'lucide-react'
 import Image from 'next/image'
 import { ContainerPhoto } from '../ContainerPhoto'
@@ -17,7 +18,6 @@ type ICarDetailProps = {
 
 const CarDetail = ({ params }: ICarDetailProps) => {
   const { data: initialCar } = useCarByCarId(String(params.carId))
-  console.log('coo:', initialCar)
 
   return (
     <div className="w-full  bg-white px-2 py-4 md:px-8 md:pb-12 md:pt-4">
@@ -55,6 +55,7 @@ const CarDetail = ({ params }: ICarDetailProps) => {
         <div className="mt-10 grid grid-cols-1 gap-6 text-gray-700 md:grid-cols-2">
           <div className="space-y-4">
             <div>
+              <div className="mt-2 gap-y-4 bg-white px-2 pb-4">
                 <div className="space-y-4">
                   <div>
                     <div className="flex items-center gap-x-2">
@@ -79,15 +80,19 @@ const CarDetail = ({ params }: ICarDetailProps) => {
                   height={32}
                   width={32}
                   alt="brand"
-                  src={initialCar?.thumbnail_url || '/images/placeholder.jpg'}
+                  src={
+                    (initialCar?.thumbnail_url &&
+                      ensureHttp(initialCar?.thumbnail_url)) ||
+                    '/images/placeholder.jpg'
+                  }
                 />
               ) : (
                 <IconBadge icon={ImageIcon} />
               )}
-              <h2 className="line-clamp-2 text-lg">Marca aqui</h2>
+              <h2 className="line-clamp-2 text-lg">Dados</h2>
             </div>
 
-            <div className="mt-2 gap-y-4 bg-white px-2 pb-4">
+            <div className="mt-6 gap-y-4 border-t bg-white p-4">
               {initialCar?.id && <DescriptionForm initialCar={initialCar} />}
               {initialCar?.id && <DescriptionForm initialCar={initialCar} />}
               {initialCar?.id && <DescriptionForm initialCar={initialCar} />}
