@@ -4,7 +4,7 @@ import { IPhoto } from '@/@model/photo/photo'
 import DialogModal from '@/components/modals/DialogModal'
 import cn from '@/utils/cn'
 import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd'
-import { Loader2, Trash } from 'lucide-react'
+import { Trash } from 'lucide-react'
 import Image from 'next/image'
 import { usePhotoCarList } from './usePhotoCarList'
 
@@ -16,7 +16,6 @@ export type IPhotoCarListProps = {
 export const PhotoCarList = ({ initialPhotos, carId }: IPhotoCarListProps) => {
   const {
     isMounted,
-    onDragEnd,
     images,
     isLoading,
     setLoading,
@@ -26,7 +25,6 @@ export const PhotoCarList = ({ initialPhotos, carId }: IPhotoCarListProps) => {
     handleOnCloseDialogModalDelete,
     deleteImage,
     isLoadingDelete,
-    isUpdating,
   } = usePhotoCarList({
     initialPhotos,
     carId,
@@ -45,21 +43,15 @@ export const PhotoCarList = ({ initialPhotos, carId }: IPhotoCarListProps) => {
           handler={() => deleteImage()}
           isLoading={isLoadingDelete}
           title={`Atenção!`}
-          message={`Tem certeza que deseja deletar a imagem? Após essa ação essa imagem não estará na galeria de fotos todos dos produtos!`}
-          titleButtonConfirmation={`sim deletar`}
-          titleButtonOnClose={`não deletar`}
+          message={`Tem certeza que deseja deletar a imagem? Após essa ação essa imagem não estará na galeria de fotos todas das viaturas!`}
+          titleButtonConfirmation={`sim`}
+          titleButtonOnClose={`não`}
         />
       )}
-      <DragDropContext onDragEnd={onDragEnd}>
+      <DragDropContext onDragEnd={() => {}}>
         <Droppable droppableId="images">
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef}>
-              {isUpdating && (
-                <div className="mb-4 flex items-center justify-center">
-                  <Loader2 className="h-8 w-8 animate-spin text-accent" />
-                </div>
-              )}
-
               {images?.map((image, index) => (
                 <Draggable key={image.id} draggableId={image.id} index={index}>
                   {(provided) => (
