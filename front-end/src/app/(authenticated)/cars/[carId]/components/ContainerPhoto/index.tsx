@@ -1,7 +1,6 @@
 'use client'
 
 import { ICar } from '@/@model/car'
-import { IPhoto } from '@/@model/photo/photo'
 import ContainerButton from '@/components/ContainerButton'
 import { FileUpload } from '@/components/FileUpload'
 import { Button } from '@/components/buttons/Button'
@@ -13,7 +12,6 @@ import { useContainerPhoto } from './useContainerPhoto'
 
 interface IContainerPhotoProps {
   initialCar?: ICar
-  photos?: IPhoto[]
 }
 
 const accept = {
@@ -21,10 +19,7 @@ const accept = {
   'image/jpeg': ['.jpg', '.jpeg'],
 }
 
-export const ContainerPhoto = ({
-  photos,
-  initialCar,
-}: IContainerPhotoProps) => {
+export const ContainerPhoto = ({ initialCar }: IContainerPhotoProps) => {
   const {
     isEditing,
     toggleEdit,
@@ -47,16 +42,16 @@ export const ContainerPhoto = ({
           >
             {isEditing && (
               <>
-                <X className="mr-2 h-4 w-4" />
+                <X className="mr-2 h-4 w-10" />
                 Cancelar
               </>
             )}
 
             {!isEditing && (
-              <>
-                <ImagePlus className="mr-2 h-4 w-4" />
+              <div className={`flex w-16 border`}>
+                <ImagePlus className="mr-2 flex h-4 w-4" />
                 Adicionar foto
-              </>
+              </div>
             )}
           </Button>
         </div>
