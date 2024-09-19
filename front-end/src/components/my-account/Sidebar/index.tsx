@@ -103,7 +103,7 @@ const SideBar = () => {
                 href={category.href}
                 title={category.name}
                 className={cn(
-                  'md:text-md my-1 flex w-full justify-start gap-1  px-6 text-sm md:gap-3 md:px-4',
+                  'md:text-md my-1 flex w-full justify-start gap-1 px-6 text-sm md:gap-3 md:px-4',
                   pathname === category.href
                     ? activeElementClasses
                     : nonActiveElementClasses,

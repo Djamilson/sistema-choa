@@ -4,14 +4,14 @@ import { Hr } from '@/components/Hr'
 import { IconBadge } from '@/components/IconBadge'
 import { useCarByCarId } from '@/hooks/Entity/useCars'
 import { FileText, ImageIcon } from 'lucide-react'
+import { AcronymForm } from '../AcronymForm'
 import { BrandForm } from '../BrandForm'
 import { ContainerPhoto } from '../ContainerPhoto'
 import { DescriptionForm } from '../DescriptionForm'
+import { FuelTypeForm } from '../FuelTypeForm'
 import ImageGallery from '../ImageGallery'
 import { NameForm } from '../NameForm'
 import { PlateForm } from '../PlateForm'
-import { AcronymForm } from '../AcronymForm'
-import { FuelTypeForm } from '../FuelTypeForm'
 
 type ICarDetailProps = {
   params: {
@@ -63,10 +63,7 @@ const CarDetail = ({ params }: ICarDetailProps) => {
                     <IconBadge icon={ImageIcon} />
                     <h2 className="text-xl">Imagens da viatura</h2>
                   </div>
-                  <ContainerPhoto
-                    photos={initialCar?.photos}
-                    initialCar={initialCar}
-                  />
+                  <ContainerPhoto initialCar={initialCar} />
                 </div>
               </div>
             </div>
