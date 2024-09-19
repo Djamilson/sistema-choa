@@ -2,6 +2,7 @@
 
 import { api } from '@/_services/apiClient'
 import { Toast } from '@/components/Toast'
+import { getCarByCarId } from '@/hooks/Entity/useCars'
 import { getQueryClient } from '@/tanStackQuery/getQueryClient'
 import { useMutation } from '@tanstack/react-query'
 import { filesize } from 'filesize'
@@ -29,11 +30,7 @@ type IOnSubmitProps = { carId: string }
 
 const queryClient = getQueryClient()
 
-type IUseContainerPhotoProps = {
-  carId?: string
-}
-
-export const useContainerPhoto = ({ carId }: IUseContainerPhotoProps) => {
+export const useContainerPhoto = () => {
   const [isEditing, setIsEditing] = useState(false)
   const [uploadedFiles, setUploadedFiles] = useState<IFileProps[]>(
     [] as IFileProps[],
@@ -55,12 +52,16 @@ export const useContainerPhoto = ({ carId }: IUseContainerPhotoProps) => {
 
       await Promise.all(promises)
 
-      return ''
+      return carId
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['hydrate-car-id', carId],
+    onSuccess: async (carId) => {
+      queryClient.invalidateQueries({ queryKey: ['hydrate-car', carId] })
+
+      const data = await getCarByCarId(carId)
+      queryClient.setQueryData(['hydrate-car', data.id], () => {
+        return data
       })
+
       queryClient.invalidateQueries({ queryKey: ['hydrate-cars'] })
     },
   })
@@ -104,7 +105,7 @@ export const useContainerPhoto = ({ carId }: IUseContainerPhotoProps) => {
       data.append('file', uploadedFile.file, uploadedFile.name)
       data.append('carId', carId)
 
-      const res = await api.post('aggregations/cars/me/photos', data, {
+      const res = await api.patch('cars/photos', data, {
         onUploadProgress: (e) => {
           const progress =
             e.total && parseInt(String(Math.round((e.loaded * 100) / e.total)))
@@ -149,9 +150,6 @@ export const useContainerPhoto = ({ carId }: IUseContainerPhotoProps) => {
         message: 'imagem (ns) cadastrada (s) com sucesso, 🙌!',
         type: 'success',
       })
-
-      // const myData = await getcarBycarId(carId)
-      // setInitialcar(myData)
 
       toggleEdit()
     } catch (err) {

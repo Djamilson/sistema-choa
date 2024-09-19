@@ -23,7 +23,7 @@ export function FileUpload({ accept, handleUpload, title }: IFileUploadProps) {
     >
       <label
         htmlFor="dropzone-file"
-        className="focus:shadow-outline dark:hover:bg-bray-800 group relative flex h-64 w-full cursor-pointer flex-col items-center justify-center whitespace-nowrap border border-dashed border-gray-300 bg-slate-200 py-1 text-sm font-medium text-gray-500 shadow-sm ring-0 transition-all duration-150 hover:border-gray-200 hover:bg-red-200 hover:text-white hover:opacity-80 hover:ring-2 hover:ring-red-500 hover:ring-offset-1 hover:ring-offset-white focus:outline-none disabled:cursor-not-allowed  disabled:opacity-70 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:border-red-500  dark:hover:bg-gray-600 dark:hover:text-gray-50 md:mt-0 md:px-16 md:ring-offset-red-500"
+        className="focus:shadow-outline dark:hover:bg-bray-800 group relative flex h-64 w-full cursor-pointer flex-col items-center justify-center whitespace-nowrap border border-dashed border-gray-300 bg-slate-200 py-1 text-sm font-medium text-gray-500 shadow-sm ring-0 transition-all duration-150 hover:border-gray-200 hover:bg-red-200 hover:text-white hover:opacity-80 hover:ring-2 hover:ring-red-500 hover:ring-offset-1 hover:ring-offset-white focus:outline-none disabled:cursor-not-allowed  disabled:opacity-70 md:mt-0 md:px-16 md:ring-offset-red-500 dark:border-gray-600  dark:bg-gray-700 dark:text-gray-400 dark:hover:border-red-500 dark:hover:bg-gray-600 dark:hover:text-gray-50"
       >
         <div className="flex flex-col items-center justify-center pb-6 pt-5">
           {title && (

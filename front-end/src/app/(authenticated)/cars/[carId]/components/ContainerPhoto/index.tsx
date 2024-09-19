@@ -5,7 +5,6 @@ import ContainerButton from '@/components/ContainerButton'
 import { FileUpload } from '@/components/FileUpload'
 import { Button } from '@/components/buttons/Button'
 import { ImageIcon, ImagePlus, X } from 'lucide-react'
-import Image from 'next/image'
 import { FileList } from './FileList'
 import { PhotoCarList } from './PhotoCarList'
 import { useContainerPhoto } from './useContainerPhoto'
@@ -27,9 +26,7 @@ export const ContainerPhoto = ({ initialCar }: IContainerPhotoProps) => {
     uploadedFiles,
     handleUpload,
     handleDelete,
-  } = useContainerPhoto({
-    carId: initialCar?.id,
-  })
+  } = useContainerPhoto()
 
   return (
     <div className="mt-6 gap-y-4 border-t bg-white p-4">
@@ -41,14 +38,14 @@ export const ContainerPhoto = ({ initialCar }: IContainerPhotoProps) => {
             className={`h-8 border-none shadow-none`}
           >
             {isEditing && (
-              <>
-                <X className="mr-2 h-4 w-10" />
+              <div className={`flex w-full`}>
+                <X className="mr-2 h-4 w-4" />
                 Cancelar
-              </>
+              </div>
             )}
 
             {!isEditing && (
-              <div className={`flex w-16 border`}>
+              <div className={`flex w-full`}>
                 <ImagePlus className="mr-2 flex h-4 w-4" />
                 Adicionar foto
               </div>
@@ -57,26 +54,11 @@ export const ContainerPhoto = ({ initialCar }: IContainerPhotoProps) => {
         </div>
       </div>
 
-      {!isEditing &&
-        (initialCar?.photos && initialCar?.photos?.length < 1 ? (
-          <div className="flex h-60 items-center justify-center  bg-slate-200">
-            <ImageIcon className="h-10 w-10 text-slate-500" />
-          </div>
-        ) : (
-          <div className="relative mt-2 aspect-video">
-            {initialCar?.photos?.map((photo) => {
-              return (
-                <Image
-                  key={photo.id}
-                  alt={photo.name}
-                  fill
-                  className="object-cover"
-                  src={photo.photo_url}
-                />
-              )
-            })}
-          </div>
-        ))}
+      {!isEditing && initialCar?.photos && initialCar?.photos?.length < 1 && (
+        <div className="flex h-60 items-center justify-center  bg-slate-200">
+          <ImageIcon className="h-10 w-10 text-slate-500" />
+        </div>
+      )}
 
       {isEditing && initialCar?.id && (
         <div className="mb-2">
