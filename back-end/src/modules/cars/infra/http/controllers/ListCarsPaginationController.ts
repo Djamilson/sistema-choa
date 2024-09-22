@@ -12,12 +12,13 @@ class ListCarsPaginationController {
 
       const list = container.resolve(ListCarsPaginationService)
 
+      console.log('EStou reeee chegou aqui: porrooo', req.query)
       const meProducts = await list.execute({
         page: Number(page),
         pageSize: Number(pageSize),
         query,
       })
-
+      console.log('EStou reeee', meProducts)
       return res.json(meProducts)
     } catch (error: any) {
       return res

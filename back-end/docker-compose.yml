@@ -1,4 +1,4 @@
-version: "3"
+#version: "3"
 
 services:
   # Application
@@ -19,8 +19,8 @@ services:
     networks:
       - app-net
 
-  shoofertadb:
-    container_name: micro_shooferta_db
+  prisma-choa-db:
+    container_name: micro_choa_db
     image: "postgres:alpine"
     restart: always
     ports:
@@ -28,9 +28,9 @@ services:
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=f2966052964454b6601c83f1cc08ab97
-      - POSTGRES_DB=shoofertadb
+      - POSTGRES_DB=prisma-choa-db
     volumes:
-      - "postgresql_shooferta:/var/lib/postgresql/shooferta"
+      - "postgresql_choa:/var/lib/postgresql/choa"
 
     networks:
       - app-net
@@ -44,60 +44,60 @@ services:
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=f2966052964454b6601c83f1cc08ab97
-      - POSTGRES_DB=shoofertadb
+      - POSTGRES_DB=prisma-choa-db
     volumes:
       - "postgresql_admin:/var/lib/postgresql/admin"
 
     networks:
       - app-net
 
-  zookeeper:
-    container_name: micro_zookeeper
-    image: confluentinc/cp-zookeeper:latest
-    restart: always
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
-    ports:
-      - 22181:2181
-    networks:
-      - app-net
+  #zookeeper:
+  #  container_name: micro_zookeeper
+  #  image: confluentinc/cp-zookeeper:latest
+  #  restart: always
+  #  environment:
+  #    ZOOKEEPER_CLIENT_PORT: 2181
+  #    ZOOKEEPER_TICK_TIME: 2000
+  #  ports:
+  #    - 22181:2181
+  #  networks:
+  #    - app-net
 
-  kafka:
-    container_name: micro_kafka
-    image: confluentinc/cp-kafka:latest
-    restart: always
-    depends_on:
-      - zookeeper
-    ports:
-      - 29092:29092
+  #kafka:
+  #  container_name: micro_kafka
+  #  image: confluentinc/cp-kafka:latest
+  #  restart: always
+  #  depends_on:
+  #    - zookeeper
+  #  ports:
+  #    - 29092:29092
 
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+  #  environment:
+  #    KAFKA_BROKER_ID: 1
+  #    KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+  #    KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+  #    KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+  #    KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+  #    KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
-    networks:
-      - app-net
+  #  networks:
+  #    - app-net
 
-  kafka_ui:
-    container_name: micro_kafka_ui
-    image: provectuslabs/kafka-ui:latest
-    restart: always
-    depends_on:
-      - kafka
-    ports:
-      - 8080:8080
-    environment:
-      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
-      KAFKA_CLUSTERS_0_NAME: local
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+  #kafka_ui:
+  #  container_name: micro_kafka_ui
+  #  image: provectuslabs/kafka-ui:latest
+  #  restart: always
+  #  depends_on:
+  #    - kafka
+  #  ports:
+  #    - 8080:8080
+  #  environment:
+  #    KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+  #    KAFKA_CLUSTERS_0_NAME: local
+  #    KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
 
-    networks:
-      - app-net
+  #  networks:
+  #    - app-net
 
   mongodb:
     container_name: micro_mongo_db
@@ -122,10 +122,13 @@ networks:
     driver: bridge
 
 volumes:
-  postgresql_shooferta:
+  postgresql_choa:
     driver: local
 
   postgresql_session:
+    driver: local
+
+  postgresql_admin:   # Adicionado o volume faltante
     driver: local
 
   mongo:

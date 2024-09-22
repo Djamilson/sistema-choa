@@ -7,7 +7,7 @@ const nextConfig = {
         protocol: 'http',
         hostname: '192.168.1.13',
       },
-      {protocol: 'http', hostname:'192.168.10.140'},
+      {protocol: 'http', hostname:'192.168.10.157'},
       {protocol: 'http', hostname: '192.168.3.23' },
       {protocol: 'http', hostname: '192.168.1.183' },
       {
