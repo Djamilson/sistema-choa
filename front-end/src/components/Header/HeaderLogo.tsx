@@ -24,8 +24,8 @@ export function HeaderLogo({ href, urlLogo }: IHeaderLogoProps) {
             className="mt-1 px-2 text-center text-lg font-bold tracking-tight text-gray-600 md:text-2xl"
           >
             <Image
-              height="50"
-              width="50"
+              height="60"
+              width="60"
               className="mx-auto w-auto shadow-sm"
               src={urlLogo || '/images/logo.png'}
               alt="Logo"

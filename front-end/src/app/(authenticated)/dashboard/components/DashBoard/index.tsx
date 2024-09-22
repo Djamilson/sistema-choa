@@ -12,7 +12,7 @@ const DashBoard = () => {
   }, [onCloseLoadingOnClickButtonModal])
 
   return (
-    <div className="gap-22 flex-[4] px-2 py-4 md:px-8 md:pb-12 md:pt-4">
+    <div className="gap-22 flex-[4] bg-white px-2 py-4 md:px-8 md:pb-12 md:pt-4">
       <div className="flex flex-col justify-between gap-6 text-base font-medium text-gray-900">
         <div className="flex w-full flex-col">
           <p>últimos pedidos</p>

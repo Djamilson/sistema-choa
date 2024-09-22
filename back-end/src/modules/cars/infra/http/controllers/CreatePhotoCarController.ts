@@ -6,8 +6,7 @@ class CreatePhotoCarController {
   public async create(req: Request, res: Response): Promise<Response> {
     try {
       const createPhotoProduct = container.resolve(CreatePhotoCarService)
-      console.log('req.body req.body', req.body)
-      console.log('req.file', req.file)
+
       const { carId } = req.body
 
       const photoProduct = await createPhotoProduct.execute({

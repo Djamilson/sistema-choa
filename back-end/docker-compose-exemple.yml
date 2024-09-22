@@ -1,4 +1,4 @@
-version: "3"
+#version: "3"
 
 services:
   # Application
@@ -18,7 +18,7 @@ services:
 
     networks:
       - app-net
-  
+
   shoofertadb:
     container_name: micro_shooferta_db
     image: "postgres:alpine"

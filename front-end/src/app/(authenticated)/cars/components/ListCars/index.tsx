@@ -16,8 +16,6 @@ function ListCars() {
     handleChangeSearch,
     isOpenNewModalCar,
     closeNewModalCar,
-    selectCarEdit,
-    setSelectCarEdit,
     setIsOpenNewModalCar,
     cars,
     page,
@@ -26,13 +24,12 @@ function ListCars() {
     isLoading,
     isFetching,
     isOpenModalContainerButton,
-
     closeModalEditClear,
     error,
   } = useListCars()
 
   return (
-    <div className="gap-22 flex-[4] px-2 py-4 md:px-8 md:pb-12 md:pt-4">
+    <div className="gap-22 flex-[4] bg-white px-2 py-4 md:px-8 md:pb-12 md:pt-4">
       <div className="flex flex-col justify-between gap-6 text-base font-medium">
         <SubHeader.Title title="lista de viaturas" />
 
@@ -121,7 +118,7 @@ function ListCars() {
                       </tr>
                     </thead>
                     <tbody>
-                      {cars && cars.cars?.length < 1 && (
+                      {cars && cars?.cars?.length < 1 && (
                         <tr className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
                           <td colSpan={7} className=" left-0 w-full p-4">
                             <div className="flex items-center">

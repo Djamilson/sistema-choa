@@ -33,7 +33,7 @@ const Cars = () => {
 
       <Container>
         <div className="my-10 flex flex-col gap-4 lg:flex-row">
-          <div className="flex-[1] bg-white p-[12px]">
+          <div className="flex-[1] bg-white p-[14px]">
             <h3 className="text-lg font-semibold">Menu</h3>
             <div className="mt-4">
               <SideBar />

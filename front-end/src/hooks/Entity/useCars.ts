@@ -17,11 +17,23 @@ export async function getCars(
 ): Promise<IListCars> {
   const url = `cars/pagination/list`
 
+  console.log('Estou vai', page, limit, search)
   const { data } = await api.get(url, {
     params: { page, limit, q: search },
   })
 
-  return data
+  console.log('Estou com erroo', data)
+  const initialCars = {
+    cars: [],
+    info: {
+      page: 0,
+      pages: 0,
+      total: 0,
+      limit: 0,
+    },
+  }
+
+  return data || initialCars
 }
 export function useAllCars(page: number, limit: number, search: string) {
   return useQuery<IListCars>({

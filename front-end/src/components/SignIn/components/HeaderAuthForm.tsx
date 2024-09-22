@@ -16,8 +16,8 @@ export default function HeaderAuthForm() {
         className="mt-6 px-2 text-center text-lg font-bold tracking-tight text-gray-600 md:text-2xl"
       >
         <Image
-          height="58"
-          width="58"
+          height="80"
+          width="80"
           className="mx-auto w-auto"
           src="/images/logo.png"
           alt="Logo"

@@ -27,6 +27,7 @@ class ListCarsPaginationService {
     query,
   }: IDataPageDTO): Promise<ICarsReturn> {
     try {
+      console.log('poroororo cars 01', page, pageSize, query)
       const cachekeyCarsPage = `cars:${page}-${query}`
 
       let cars = await this.cacheProvider.recover<any>(cachekeyCarsPage)
@@ -47,10 +48,14 @@ class ListCarsPaginationService {
           info,
         }
 
-        await this.cacheProvider.save(cachekeyCarsPage, meCars)
+        if (result.length > 0) {
+          await this.cacheProvider.save(cachekeyCarsPage, meCars)
 
-        cars = meCars
+          cars = meCars
+        }
       }
+
+      console.log('Estouuuodofs odufo', cars)
 
       return cars
     } catch (error: any) {
