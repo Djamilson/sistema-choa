@@ -22,6 +22,13 @@ const groups = [
   },
 ]
 
+const institutions = [
+  {
+    name: '1º Companhia Independente de Bombeiro Militar',
+    acronym: '1ºCIBM',
+  },
+]
+
 const person = {
   id: 'cjld2cjzh0088qzrmn831i7ux',
   name: 'Djamilson',
@@ -53,4 +60,4 @@ const usersCompaniesGroups = [
   },
 ]
 
-export { groups, person, user, usersCompaniesGroups }
+export { groups, institutions, person, user, usersCompaniesGroups }
