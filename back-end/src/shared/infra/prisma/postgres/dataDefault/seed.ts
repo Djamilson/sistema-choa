@@ -2,6 +2,7 @@ import { postgres } from '@shared/infra/prisma/lib/prismaClient'
 
 import {
   groups,
+  institutions,
   person,
   user,
   usersCompaniesGroups,
@@ -9,32 +10,30 @@ import {
 
 const seed = async () => {
   try {
+    const meInstitutions = postgres.institution.createMany({
+      data: institutions,
+    })
+
     const meGroups = postgres.group.createMany({
       data: groups,
     })
 
-    const mePersons = postgres.person.create({
+    const mePerson = postgres.person.create({
       data: person,
     })
 
-    const result = await Promise.all([
-      meGroups,
-      mePersons,
-    ])
+    const result = await Promise.all([meGroups, mePerson, meInstitutions])
 
     await postgres.$transaction([
       postgres.user.create({
         data: user,
-      })
-      ,
+      }),
     ])
 
     await Promise.all([
-
       postgres.userCompanyGroup.createMany({
         data: usersCompaniesGroups,
       }),
-
     ])
 
     console.log(result)

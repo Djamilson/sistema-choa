@@ -1,6 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "../../../../../prisma/generated/postgres"
+  provider      = "prisma-client-js"
+  output        = "../../../../../prisma/generated/postgres"
   binaryTargets = ["native", "windows"]
 }
 
@@ -118,9 +118,37 @@ model Car {
   maintenances Maintenance[]
   problems     Problem[]
   photos       Photo[]
+  locateds     Located[]
+
+  located_id String?
 
   @@index([id])
   @@map("cars")
+}
+
+model Located {
+  id         String   @id @default(cuid())
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  car_id     String
+  car        Car      @relation(fields: [car_id], references: [id])
+
+  institution_id String
+  institution    Institution @relation(fields: [institution_id], references: [id])
+
+  @@index([id])
+  @@map("localeds")
+}
+
+model Institution {
+  id         String    @id @default(cuid())
+  created_at DateTime  @default(now())
+  updated_at DateTime  @default(now())
+  name       String
+  locateds    Located[]
+
+  @@index([id])
+  @@map("institutions")
 }
 
 model Maintenance {
